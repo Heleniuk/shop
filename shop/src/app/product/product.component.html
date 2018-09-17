@@ -1,3 +1,14 @@
-<p>
-  product works!
-</p>
+<div *ngIf = [isAvailable]>
+  Name: {{name}}
+  <br>
+  Description: {{description}}
+  <br>
+  Price: {{price}}
+  <br>
+  <ul *ngFor = "let review of reviews">
+    <li>{{review}}</li>
+  </ul>
+  <ul *ngFor = "let rating of ratings">
+    <li>{{rating}}</li>
+  </ul>
+</div>
