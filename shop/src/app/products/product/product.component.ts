@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Category } from '../category.enum';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -13,23 +15,20 @@ export class ProductComponent implements OnInit {
   category: Category;
   isAvailable: boolean;
   reviews: string[];
-  ratings: Array<Number> = new Array();
 
   constructor() { }
 
   ngOnInit() {
-    this.name = "A Book";
-    this.description = "A very interesting one, by the way";
+    this.name = 'A Book';
+    this.description = 'A very interesting one, by the way';
     this.price = 100;
     this.category = Category.Business;
     this.isAvailable = true;
     this.reviews = ['Perfect!', 'Wonderful!'];
-    this.ratings.push(5);
-    this.ratings.push(5);
   }
 
-}
+  onBuyButtonClick(): void {
+    console.log('The Product has been bought!');
+  }
 
-const enum Category {
-  Mainstream, Business, Luxury
 }
