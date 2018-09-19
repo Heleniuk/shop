@@ -8,7 +8,6 @@ import { ProductModel } from '../../models/product.model';
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  providers: [ProductsService]
 })
 export class ProductListComponent implements OnInit {
   @Input()
@@ -17,17 +16,12 @@ export class ProductListComponent implements OnInit {
   @Output()
   addToCart: EventEmitter<ProductModel> = new EventEmitter();
 
-  constructor(private productsService: ProductsService) { }
+  constructor() { }
 
-  ngOnInit() {
-    if (!this.products) {
-      this.products = this.productsService.getProducts();
-    }
-  }
+  ngOnInit() {}
 
-  onBuyButtonClick(product: ProductModel): void {
+  onAddButtonClick(product: ProductModel): void {
     this.addToCart.emit(product);
-    console.log('The Product ' + product.name + ' has been bought!');
   }
 
 }

@@ -1,0 +1,9 @@
+<div class="inline">
+    <app-cart [productsInCart]="productsInCart" (removeFromCart)="onRemoveFromCart($event)">
+    </app-cart>
+    <br>
+    <br>
+    All Products:
+    <app-product-list [products]="allProducts" (addToCart)="onAddToCart($event)">
+    </app-product-list>
+</div>

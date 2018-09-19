@@ -9,6 +9,7 @@ export class BookModel implements ProductModel {
     category: Category;
     isAvailable: boolean;
     reviews: string[];
+    isInCart: boolean;
 
     constructor(name: string, description: string, price: number, category: Category) {
         this.name = name;

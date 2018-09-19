@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductModel } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
 
@@ -9,21 +9,22 @@ import { CartService } from '../../services/cart.service';
   providers: [CartService]
 })
 export class CartComponent implements OnInit {
+
+  @Input()
   productsInCart: Array<ProductModel>;
+  @Output()
+  removeFromCart: EventEmitter<ProductModel> = new EventEmitter();
 
-  constructor(private cartService: CartService) { }
+  constructor() {}
 
-  ngOnInit() {
-    this.productsInCart = this.cartService.getProductsInCart();
-  }
-
-  onAddToCart(product: ProductModel) {
-    console.log('CartComponent: Added to Cart!');
-    this.cartService.addToCart(product);
-  }
+  ngOnInit() {}
 
   isCartNotEmpty(): boolean {
     return this.productsInCart.length > 0;
+  }
+
+  onRemoveButtonClick(product: ProductModel): void {
+    this.removeFromCart.emit(product);
   }
 
 }

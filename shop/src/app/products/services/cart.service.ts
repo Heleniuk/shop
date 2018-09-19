@@ -24,4 +24,8 @@ export class CartService {
     getProductsInCart(): Array<ProductModel> {
         return this.productsInCart;
     }
+
+    isInCart(product: ProductModel): boolean {
+        return this.productsInCart.indexOf(product) > -1;
+    }
 }
