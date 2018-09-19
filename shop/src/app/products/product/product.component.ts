@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Category } from '../category.enum';
+import { ProductModel } from '../product.model';
 
 @Component({
   selector: 'app-product',
@@ -9,26 +10,14 @@ import { Category } from '../category.enum';
 })
 export class ProductComponent implements OnInit {
 
-  name: string;
-  description: string;
-  price: number;
-  category: Category;
-  isAvailable: boolean;
-  reviews: string[];
-
+  @Input()
+  product: ProductModel;
   constructor() { }
 
-  ngOnInit() {
-    this.name = 'A Book';
-    this.description = 'A very interesting one, by the way';
-    this.price = 100;
-    this.category = Category.Business;
-    this.isAvailable = true;
-    this.reviews = ['Perfect!', 'Wonderful!'];
-  }
+  ngOnInit() {}
 
   onBuyButtonClick(): void {
-    console.log('The Product has been bought!');
+    console.log('The Product' + this.product.name + 'has been bought!');
   }
 
 }

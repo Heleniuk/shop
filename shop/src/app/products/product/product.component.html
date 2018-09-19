@@ -1,14 +1,14 @@
-<div *ngIf = "isAvailable">
-  Name: {{name}}
+<div *ngIf = "product.isAvailable">
+  Name: {{product.name}}
   <br>
-  Description: {{description}}
+  Description: {{product.description}}
   <br>
-  Price: {{price}}
+  Price: {{product.price}}
   <br>
-  Category: {{category}}
+  Category: {{product.category}}
   <br>
   Reviews:
-  <ul *ngFor = "let review of reviews">
+  <ul *ngFor = "let review of product.reviews">
     <li>{{review}}</li>
   </ul>
   <button (click) = "onBuyButtonClick()">Buy</button>
