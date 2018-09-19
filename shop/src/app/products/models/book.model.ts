@@ -17,6 +17,6 @@ export class BookModel implements ProductModel {
         this.price = price;
         this.category = category;
         this.isAvailable = true;
-        this.reviews = [];
+        this.reviews = ['Nice book!', 'Just fine.'];
     }
 }
