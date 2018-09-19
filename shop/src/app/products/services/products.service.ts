@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { ProductModel } from "./product.model";
-import { BookModel } from "./book.model";
-import { Category } from "./category.enum";
+import { ProductModel } from "../models/product.model";
+import { BookModel } from "../models/book.model";
+import { Category } from "../models/category.enum";
 
 @Injectable()
 export class ProductsService {

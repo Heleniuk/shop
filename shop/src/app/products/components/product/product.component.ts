@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Category } from '../category.enum';
-import { ProductModel } from '../product.model';
+import { ProductModel } from '../../models/product.model';
 
 @Component({
   selector: 'app-product',
@@ -15,9 +14,4 @@ export class ProductComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-
-  onBuyButtonClick(): void {
-    console.log('The Product' + this.product.name + 'has been bought!');
-  }
-
 }
