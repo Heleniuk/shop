@@ -19,12 +19,12 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {}
 
-  isCartNotEmpty(): boolean {
-    return this.productsInCart.length > 0;
-  }
-
   onRemoveButtonClick(product: ProductModel): void {
     this.removeFromCart.emit(product);
+  }
+
+  isCartNotEmpty(): boolean {
+    return this.productsInCart.length > 0;
   }
 
 }
