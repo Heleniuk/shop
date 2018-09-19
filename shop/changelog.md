@@ -1,0 +1,1 @@
+Task1. Added product, product-list and cart-components. Implemented "Add to Cart" functionality.
