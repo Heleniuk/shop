@@ -1,0 +1,6 @@
+<ul *ngFor="let product of products">
+  <li>
+    <app-product [product]="product"></app-product>
+  </li>
+  <button (click) = "onAddButtonClick(product)">Add to Cart</button>
+</ul>
