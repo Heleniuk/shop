@@ -27,6 +27,7 @@ export class ShoppingComponent implements OnInit {
   }
 
   onRemoveFromCart(product: ProductModel) {
+    console.log("Removed!");
     this.cartService.removeFromCart(product);
   }
 

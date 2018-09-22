@@ -1,14 +1,14 @@
-<div *ngIf = "product.isAvailable">
-  Name: {{product.name}}
-  <br>
-  Description: {{product.description}}
-  <br>
-  Price: {{product.price}}
-  <br>
-  Category: {{product.category}}
-  <br>
-  Reviews:
-  <ul *ngFor = "let review of product.reviews">
-    <li>{{review}}</li>
-  </ul>
+<div class="container">
+  <div *ngIf="product.isAvailable" class="card" style="width: 19rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{product.name}}
+        <span class="badge badge-info">{{product.category}}</span>
+      </h5>
+      <p class="card-text"> {{product.description}}</p>
+      <h5 class="card-title">${{product.price}}</h5>
+      <button type="button" class="btn btn-warning right" (click)="onAddButtonClick(product)">
+        Add to Cart
+      </button>
+    </div>
+  </div>
 </div>

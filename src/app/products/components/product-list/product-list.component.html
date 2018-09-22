@@ -1,6 +1,9 @@
-<ul *ngFor="let product of products">
-  <li>
-    <app-product [product]="product"></app-product>
-  </li>
-  <button (click) = "onAddButtonClick(product)">Add to Cart</button>
-</ul>
+<div class="list-group">
+  <div *ngFor="let product of products; let i = index">
+    <div class="row" *ngIf="i % 3 === 0">
+      <app-product [product]="products[i]" (addToCart)="onAddToCart(products[i])"></app-product>
+      <app-product [product]="products[i+1]" (addToCart)="onAddToCart(products[i+1])"></app-product>
+      <app-product [product]="products[i+2]" (addToCart)="onAddToCart(products[i+2])"></app-product>
+    </div>
+  </div>
+</div>

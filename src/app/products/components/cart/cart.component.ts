@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {}
 
-  onRemoveButtonClick(product: ProductModel): void {
+  onRemoveFromCart(product: ProductModel): void {
     this.removeFromCart.emit(product);
   }
 

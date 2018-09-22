@@ -1,7 +1,13 @@
-All Products:
-<app-product-list [products]="allProducts" (addToCart)="onAddToCart($event)">
-</app-product-list>
-<br>
-<br>
-<app-cart [productsInCart]="productsInCart" (removeFromCart)="onRemoveFromCart($event)">
-</app-cart>
+<div class="row">
+    <div class="col-sm-10">
+        <app-product-list [products]="allProducts" 
+        (addToCart)="onAddToCart($event)">
+        </app-product-list>
+    </div>
+
+    <div class="col-sm-2">
+        <app-cart [productsInCart]=" productsInCart" 
+        (removeFromCart)="onRemoveFromCart($event)">
+        </app-cart>
+    </div>
+</div>

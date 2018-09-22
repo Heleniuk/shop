@@ -1,13 +1,13 @@
-Your Cart:
-<div *ngIf="isCartNotEmpty(); else cartEmptyBlock">
-    <ul *ngFor="let product of productsInCart">
-        <li>
-          <app-product [product]="product"></app-product>
-        </li>
-        <button (click) = "onRemoveButtonClick(product)">Remove from Cart</button>
-      </ul>
+<div class="card-body">
+  <div class="container" *ngIf="isCartNotEmpty(); else cartEmptyBlock">
+      <h5 class="card-title">Your Cart:</h5>
+    <div *ngFor="let productInCart of productsInCart">
+      <app-product-in-cart [productInCart]="productInCart"
+      (removeFromCart)="onRemoveFromCart($event)"></app-product-in-cart>
+    </div>
+  </div>
+  <ng-template #cartEmptyBlock>
+    <br>
+    Your Cart appears to be empty. Buy something already!
+  </ng-template>
 </div>
-<ng-template #cartEmptyBlock>
-  <br>
-  Your Cart appears to be empty. Buy something already!
-</ng-template>
