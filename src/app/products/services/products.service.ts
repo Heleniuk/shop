@@ -6,7 +6,7 @@ import { Category } from "../models/category.enum";
 @Injectable()
 export class ProductsService {
 
-    getProducts(): ProductModel[] {
+    getAllProducts(): ProductModel[] {
         return [
             new BookModel('A Book', 'A very interesting one, by the way', 100, Category.Luxury),
             new BookModel('Another Book', 'A shitty one', 300, Category.Mainstream),

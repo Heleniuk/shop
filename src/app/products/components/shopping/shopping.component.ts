@@ -19,7 +19,7 @@ export class ShoppingComponent implements OnInit {
 
   ngOnInit() {
     this.productsInCart = this.cartService.getProductsInCart();
-    this.allProducts = this.productsService.getProducts();
+    this.allProducts = this.productsService.getAllProducts();
   }
 
   onAddToCart(product: ProductModel) {
