@@ -10,14 +10,8 @@ import { ProductModel } from '../../models/product.model';
 export class ProductComponent implements OnInit {
   @Input()
   product: ProductModel;
-  @Output()
-  addToCart: EventEmitter<ProductModel> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {}
-
-  onAddButtonClick(product: ProductModel): void {
-    this.addToCart.emit(product);
-  }
 }

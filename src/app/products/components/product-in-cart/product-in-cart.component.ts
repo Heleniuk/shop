@@ -9,16 +9,10 @@ import { ProductModel } from '../../models/product.model';
 export class ProductInCartComponent implements OnInit {
   @Input()
   productInCart: ProductModel;
-  @Output()
-  removeFromCart: EventEmitter<ProductModel> = new EventEmitter();
-  
+
   constructor() { }
 
   ngOnInit() {
   }
-
-  onRemoveButtonClick(product: ProductModel): void {
-    this.removeFromCart.emit(product);
-  }
-
+  
 }

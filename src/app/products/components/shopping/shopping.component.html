@@ -1,11 +1,10 @@
 <div class="row">
-    <div class="col-sm-10">
+    <div class="col-sm-9">
         <app-product-list [products]="allProducts" 
         (addToCart)="onAddToCart($event)">
         </app-product-list>
     </div>
-
-    <div class="col-sm-2">
+    <div class="col-sm-3">
         <app-cart [productsInCart]="productsInCart" 
         (removeFromCart)="onRemoveFromCart($event)">
         </app-cart>
