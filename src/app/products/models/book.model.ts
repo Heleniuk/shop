@@ -8,10 +8,10 @@ export class BookModel implements ProductModel {
         public description: string,
         public price: number,
         public category: Category,
-        public isAvailable?: boolean,
+        public isAvailable: boolean,
         public reviews?: string[]
     ) {
-        this.isAvailable = isAvailable || true;
+        this.isAvailable = isAvailable;
         this.reviews = reviews || ['Nice book!', 'Just fine.'];
     }
 }

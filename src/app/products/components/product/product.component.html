@@ -1,9 +1,7 @@
-<div *ngIf="product.isAvailable">
-  <div class="card-body">
-    <h5 class="card-title">{{product.name}}
-      <span class="badge badge-info">{{product.category}}</span>
-    </h5>
-    <p class="card-text"> {{product.description}}</p>
-    <h5 class="card-title">${{product.price}}</h5>
-  </div>
+<div class="card-body">
+  <h5 class="card-title">{{product.name}}
+    <span class="badge badge-info">{{product.category}}</span>
+  </h5>
+  <p class="card-text"> {{product.description}}</p>
+  <h5 class="card-title">${{product.price}}</h5>
 </div>
