@@ -1,0 +1,6 @@
+:host.headingClass {
+    color: lightseagreen;
+}
+:host.bold {
+    font-style: italic;
+}

@@ -1,31 +1,45 @@
 import { Injectable, Input } from "@angular/core";
 
 import { ProductModel } from "../models/product.model";
+import { CartItem } from "../models/cart-item.model";
+import { CommunicatorService } from "./communicator.service";
 
 @Injectable()
 export class CartService {
-    productsInCart: Array<ProductModel> = new Array<ProductModel>();
+    productsInCart: Array<CartItem> = new Array<CartItem>();
 
-    addToCart(product: ProductModel): void {
-        this.productsInCart.push(product);
-        console.log('CartService: product ' + product.name + ' has been added to Cart.');
+    constructor(private communicatorService: CommunicatorService) {}
+
+    addToCart(cartItem: CartItem): void {
+        let index = this.productsInCart.findIndex(p => p.name === cartItem.name);
+        cartItem.quantity++;
+        if (index < 0) {
+            this.productsInCart.push(cartItem);
+        } else {
+            this.productsInCart[index] = cartItem;
+        }
+        this.communicatorService.publishData(this.productsInCart);
     }
 
-    removeFromCart(product: ProductModel): void {
-        const productIndex = this.productsInCart.indexOf(product);
-        if (productIndex > -1) {
-            this.productsInCart.splice(productIndex, 1);
-            console.log('CartService: product ' + product.name + ' has been removed from Cart.');
+    removeFromCart(cartItem: CartItem): void {
+        let index = this.productsInCart.findIndex(p => p.name === cartItem.name);
+        if (index < 0) {
+            console.log('Error!');
         } else {
-            console.log('Product is not in Cart');
+            if (cartItem.quantity === 1) {
+                this.productsInCart.splice(index, 1);
+            } else {
+                cartItem.quantity--;
+                this.productsInCart[index] = cartItem;
+            }
+            this.communicatorService.publishData(this.productsInCart);
         }
     }
 
-    getProductsInCart(): Array<ProductModel> {
-        return this.productsInCart;
+    getTotalSum(): number {
+        let totalSum: number = 0;
+        this.productsInCart.forEach(item => totalSum += item.price * item.quantity);
+        return totalSum;
     }
 
-    isInCart(product: ProductModel): boolean {
-        return this.productsInCart.indexOf(product) > -1;
-    }
 }

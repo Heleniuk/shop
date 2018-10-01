@@ -6,7 +6,10 @@ import { ProductComponent } from './products/components/product/product.componen
 import { ProductListComponent } from './products/components/product-list/product-list.component';
 import { CartComponent } from './products/components/cart/cart.component';
 import { ShoppingComponent } from './products/components/shopping/shopping.component';
-import { ProductInCartComponent } from './products/components/product-in-cart/product-in-cart.component';
+import { CartItemComponent } from './products/components/cart-item/cart-item.component';
+import { CommunicatorService } from './products/services/communicator.service';
+import { CartService } from './products/services/cart.service';
+
 
 @NgModule({
   declarations: [
@@ -15,12 +18,12 @@ import { ProductInCartComponent } from './products/components/product-in-cart/pr
     ProductListComponent,
     CartComponent,
     ShoppingComponent,
-    ProductInCartComponent
+    CartItemComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [CommunicatorService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
