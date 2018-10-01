@@ -2,43 +2,44 @@ import { Injectable, Input } from "@angular/core";
 
 import { ProductModel } from "../models/product.model";
 import { CartItem } from "../models/cart-item.model";
+import { CommunicatorService } from "./communicator.service";
 
 @Injectable()
 export class CartService {
-    productsInCart: Map<ProductModel, Number> = new Map<ProductModel, Number>();
+    productsInCart: Array<CartItem> = new Array<CartItem>();
 
-    addToCart(product: ProductModel): void {
-        if (this.isInCart(product)) {
-            let quantity: any = this.productsInCart.get(product);
-            this.productsInCart.set(product, quantity++)
-            console.log('On add: ' + this.productsInCart.size);
+    constructor(private communicatorService: CommunicatorService) {}
+
+    addToCart(cartItem: CartItem): void {
+        let index = this.productsInCart.findIndex(p => p.name === cartItem.name);
+        cartItem.quantity++;
+        if (index < 0) {
+            this.productsInCart.push(cartItem);
         } else {
-            this.productsInCart.set(product, 1);
-            console.log('On add: ' + this.productsInCart.size);
+            this.productsInCart[index] = cartItem;
         }
+        this.communicatorService.publishData(this.productsInCart);
     }
 
-    removeFromCart(product: ProductModel): void {
-        if (!this.isInCart(product)) {
-            console.log('This product cannot be removed because it is not in Cart');
+    removeFromCart(cartItem: CartItem): void {
+        let index = this.productsInCart.findIndex(p => p.name === cartItem.name);
+        if (index < 0) {
+            console.log('Error!');
         } else {
-            let quantity: any = this.productsInCart.get(product);
-            if (quantity < 2) {
-                this.productsInCart.delete(product);
+            if (cartItem.quantity === 1) {
+                this.productsInCart.splice(index, 1);
             } else {
-                this.productsInCart.set(product, quantity--)
+                cartItem.quantity--;
+                this.productsInCart[index] = cartItem;
             }
+            this.communicatorService.publishData(this.productsInCart);
         }
     }
 
-    getCartItems():  Array<CartItem> {
-        let cartItems: Array<CartItem> = new Array<CartItem>();
-        this.productsInCart.forEach(
-            (value: number, key: ProductModel) => cartItems.push(new CartItem(key, value)));
-        return cartItems;
+    getTotalSum(): number {
+        let totalSum: number = 0;
+        this.productsInCart.forEach(item => totalSum += item.price * item.quantity);
+        return totalSum;
     }
 
-    isInCart(product: ProductModel): boolean {
-        return this.productsInCart.has(product);
-    }
 }

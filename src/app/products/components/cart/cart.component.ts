@@ -1,32 +1,44 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, DoCheck, OnDestroy } from '@angular/core';
 import { ProductModel } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cart-item.model';
+import { Subscription } from 'rxjs';
+import { CommunicatorService } from '../../services/communicator.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css'],
-  providers: [CartService]
+  styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
-  @Input()
-  productsInCart: Array<CartItem>;
-  @Output()
-  addToCart: EventEmitter<ProductModel> = new EventEmitter();
-  @Output()
-  removeFromCart: EventEmitter<ProductModel> = new EventEmitter();
+export class CartComponent implements OnInit, OnDestroy {
+  private sub: Subscription;
+  productsInCart: Array<CartItem> = new Array<CartItem>();
+  totalSum: number = 0;
 
-  constructor() {}
+  constructor(
+    private cartService: CartService,
+    private communicatorService: CommunicatorService
+  ) { }
 
-  ngOnInit() {}
-
-  onAddToCart(product: ProductModel): void {
-    this.addToCart.emit(product);
+  ngOnInit() {
+    this.sub = this.communicatorService.channel$.subscribe(
+      data => {
+      this.productsInCart = data;
+        this.totalSum = this.cartService.getTotalSum();
+      }
+    )
   }
 
-  onRemoveFromCart(product: ProductModel): void {
-    this.removeFromCart.emit(product);
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
+  onAddToCart(cartItem: CartItem): void {
+    this.cartService.addToCart(cartItem);
+  }
+
+  onRemoveFromCart(cartItem: CartItem): void {
+    this.cartService.removeFromCart(cartItem);
   }
 
   isCartNotEmpty(): boolean {

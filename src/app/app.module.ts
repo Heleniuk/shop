@@ -7,6 +7,8 @@ import { ProductListComponent } from './products/components/product-list/product
 import { CartComponent } from './products/components/cart/cart.component';
 import { ShoppingComponent } from './products/components/shopping/shopping.component';
 import { CartItemComponent } from './products/components/cart-item/cart-item.component';
+import { CommunicatorService } from './products/services/communicator.service';
+import { CartService } from './products/services/cart.service';
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import { CartItemComponent } from './products/components/cart-item/cart-item.com
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [CommunicatorService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
