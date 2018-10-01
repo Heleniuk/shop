@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, DoCheck, OnDestroy } from '@angular/core';
-import { ProductModel } from '../../models/product.model';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cart-item.model';
 import { Subscription } from 'rxjs';
