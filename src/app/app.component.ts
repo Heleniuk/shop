@@ -10,6 +10,6 @@ export class AppComponent {
   title: ElementRef;
 
   ngAfterViewInit() {
-    (<HTMLInputElement>this.title.nativeElement).textContent = 'Welcome!'
+    (<HTMLElement>this.title.nativeElement).textContent = 'Welcome!'
   }
 }

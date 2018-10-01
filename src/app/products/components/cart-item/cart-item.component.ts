@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, HostBinding, HostListener, ElementRef, Renderer } from '@angular/core';
 import { CartItem } from '../../models/cart-item.model';
 
 @Component({
@@ -14,9 +14,22 @@ export class CartItemComponent implements OnInit {
   @Output()
   removeFromCart: EventEmitter<CartItem> = new EventEmitter();
 
-  constructor() { }
+  constructor(private renderer: Renderer) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  @HostBinding('class')
+  className = 'bold';
+
+  @HostListener('mouseenter', ['$event'])
+  onMouseEnter(element: Event) {
+    this.renderer.setElementClass(event.target, 'headingClass', true);
+  }
+
+  @HostListener('mouseleave', ['$event'])
+  leave(event: Event) {
+    this.renderer.setElementClass(event.target, 'headingClass', false);
+  }
 
   onAddToCart(cartItem: CartItem): void {
     this.addToCart.emit(cartItem);

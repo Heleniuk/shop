@@ -1,5 +1,6 @@
-.center{
-    width: 150px;
-      margin: 40px auto;
-      
-    }
+:host.headingClass {
+    color: lightseagreen;
+}
+:host.bold {
+    font-style: italic;
+}
