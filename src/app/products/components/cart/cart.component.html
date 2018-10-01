@@ -2,10 +2,10 @@
   <div class="container" *ngIf="isCartNotEmpty(); else cartEmptyBlock">
     <h5 class="card-title">Your Cart:</h5>
     <div class="container" *ngFor="let cartItem of productsInCart">
-      <app-cart-item [cartItem]="cartItem"></app-cart-item>
-      <button type="button" class="btn btn-danger" (click)="onRemoveFromCart(cartItem.product)">
-        Remove
-      </button>
+      <app-cart-item [cartItem]="cartItem" 
+        (addToCart)="onAddToCart($event)"
+        (removeFromCart)="onRemoveFromCart($event)">
+      </app-cart-item>
     </div>
   </div>
   <ng-template #cartEmptyBlock>

@@ -2,7 +2,6 @@ import { Injectable, Input } from "@angular/core";
 
 import { ProductModel } from "../models/product.model";
 import { CartItem } from "../models/cart-item.model";
-import { Observable, observable } from "rxjs";
 
 @Injectable()
 export class CartService {
@@ -32,11 +31,11 @@ export class CartService {
         }
     }
 
-    getCartItems():  Promise<Array<CartItem>> {
+    getCartItems():  Array<CartItem> {
         let cartItems: Array<CartItem> = new Array<CartItem>();
         this.productsInCart.forEach(
-            (value: Number, key: ProductModel) => cartItems.push(new CartItem(key, value)));
-        return Observable.of(cartItems);
+            (value: number, key: ProductModel) => cartItems.push(new CartItem(key, value)));
+        return cartItems;
     }
 
     isInCart(product: ProductModel): boolean {

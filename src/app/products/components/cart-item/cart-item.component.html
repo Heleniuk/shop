@@ -1,3 +1,19 @@
-<div class="card-body">
-  <h5 class="card-title">{{cartItem.product.name}}</h5>
+<div class="card-body center">
+  <h6 class="card-title">{{cartItem.product.name}}</h6>
+  <div class="input-group">
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default btn-number" (click)="onRemoveFromCart(cartItem.product)">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
+    </span>
+    <input type="text" class="form-control input-number" [value]="cartItem.quantity" min="1" max="10">
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default btn-number" (click)="onAddToCart(cartItem.product)">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </span>
+    <button type="button" class="btn btn-danger" (click)="onRemoveFromCart(cartItem.product)">
+      Remove
+    </button>
+  </div>
 </div>

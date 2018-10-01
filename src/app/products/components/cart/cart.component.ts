@@ -13,11 +13,17 @@ export class CartComponent implements OnInit {
   @Input()
   productsInCart: Array<CartItem>;
   @Output()
+  addToCart: EventEmitter<ProductModel> = new EventEmitter();
+  @Output()
   removeFromCart: EventEmitter<ProductModel> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit() {}
+
+  onAddToCart(product: ProductModel): void {
+    this.addToCart.emit(product);
+  }
 
   onRemoveFromCart(product: ProductModel): void {
     this.removeFromCart.emit(product);
