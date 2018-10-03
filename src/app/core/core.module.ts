@@ -6,12 +6,13 @@ import { generatorServiceFactory } from './factories/generator-service.factory';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { LocalStorageService } from './services/local-storage.service';
 import { ConfigOptionsService } from './services/config-options.service';
+import { ChangeColorDirective } from './directives/change-color.directive';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [ContactUsComponent],
+  declarations: [ContactUsComponent, ChangeColorDirective],
   exports: [ContactUsComponent],
   providers: [
     LocalStorageService,
