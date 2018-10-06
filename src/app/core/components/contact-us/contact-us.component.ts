@@ -24,7 +24,8 @@ export class ContactUsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.localStorageItem = this.localStorageService.getItem();
+    this.localStorageService.setItem("key", "value");
+    this.localStorageItem = this.localStorageService.getItem("key");
     this.generatedString = this.randomString;
     this.config = this.configOptionsService.getOptions();
   }

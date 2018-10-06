@@ -7,6 +7,7 @@ import { ChangeColorDirective } from './directives/change-color.directive';
 import { RandomStringFactory, RandomString5 } from './factories/random-string.factory';
 import { LocalStorageService } from './services/local-storage.service';
 import { ConfigOptionsService } from './services/config-options.service';
+import { WindowRef } from './services/window-ref';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { ConfigOptionsService } from './services/config-options.service';
     LocalStorageService,
     ConfigOptionsService,
     GeneratorService,
+    WindowRef,
     { provide: ConstantsService, useValue: CONSTANTS_SERVICE },
     { provide: RandomString5,
       useFactory: RandomStringFactory(5),

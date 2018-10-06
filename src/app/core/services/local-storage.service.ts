@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
-import { LocalStorage } from '../models/local-storage.model';
+import { WindowRef } from './window-ref';
 
-//@Injectable({providedIn: CoreModule})
 @Injectable()
 export class LocalStorageService {
-  private localStorage: LocalStorage = new LocalStorage('whatever');
+  private localStorage: any;
 
-  constructor() { }
-
-  getItem(): string {
-    return this.localStorage.item;
+  constructor(private winRef: WindowRef) {
+    this.localStorage = winRef.nativeWindow.localStorage;
   }
 
-  setItem(item: string): void {
-    this.localStorage.item = item;
+  getItem(key: string): string {
+    return this.localStorage.getItem(key);
   }
 
-  removeItem(): void {
-    this.localStorage.item = null;
+  setItem(key: string, value: any): void {
+    this.localStorage.setItem(key, value);
+  }
+
+  removeItem(key: string): void {
+    this.localStorage.removeItem();
   }
 }
