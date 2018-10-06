@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LocalStorage } from '../models/local-storage.model';
 
-// @Injectable({providedIn: CoreModule})
+//@Injectable({providedIn: CoreModule})
 @Injectable()
 export class LocalStorageService {
   private localStorage: LocalStorage = new LocalStorage('whatever');

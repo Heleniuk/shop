@@ -1,9 +1,9 @@
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { ConfigOptions } from '../../models/config-options.model';
 import { ConfigOptionsService } from '../../services/config-options.service';
-import { GeneratorService } from '../../services/generator.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { ConstantsService } from '../../services/constants.service';
+import { RandomString5 } from '../../factories/random-string.factory';
 
 
 @Component({
@@ -18,14 +18,14 @@ export class ContactUsComponent implements OnInit {
 
   constructor(
     private configOptionsService: ConfigOptionsService,
-    @Optional() private generatorService: GeneratorService,
-    private localStorageService: LocalStorageService,
+    @Inject(RandomString5) private randomString: string,
+    @Optional() private localStorageService: LocalStorageService,
     public constants: ConstantsService
   ) { }
 
   ngOnInit() {
     this.localStorageItem = this.localStorageService.getItem();
-    this.generatedString = this.generatorService.generateRandomString();
+    this.generatedString = this.randomString;
     this.config = this.configOptionsService.getOptions();
   }
 
