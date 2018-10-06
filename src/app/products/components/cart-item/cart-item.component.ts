@@ -13,6 +13,8 @@ export class CartItemComponent implements OnInit {
   addToCart: EventEmitter<CartItem> = new EventEmitter();
   @Output()
   removeFromCart: EventEmitter<CartItem> = new EventEmitter();
+  @Output()
+  removeAll: EventEmitter<CartItem> = new EventEmitter();
 
   constructor(private renderer: Renderer) { }
 
@@ -37,5 +39,9 @@ export class CartItemComponent implements OnInit {
 
   onRemoveFromCart(cartItem: CartItem): void {
     this.removeFromCart.emit(cartItem);
+  }
+
+  onRemoveAll(cartItem: CartItem): void {
+    this.removeAll.emit(cartItem);
   }
 }

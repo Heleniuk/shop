@@ -1,6 +1,5 @@
 import { Injectable, Input } from "@angular/core";
 
-import { ProductModel } from "../models/product.model";
 import { CartItem } from "../models/cart-item.model";
 import { CommunicatorService } from "./communicator.service";
 
@@ -8,7 +7,7 @@ import { CommunicatorService } from "./communicator.service";
 export class CartService {
     productsInCart: Array<CartItem> = new Array<CartItem>();
 
-    constructor(private communicatorService: CommunicatorService) {}
+    constructor(private communicatorService: CommunicatorService) { }
 
     addToCart(cartItem: CartItem): void {
         let index = this.productsInCart.findIndex(p => p.name === cartItem.name);
@@ -34,6 +33,29 @@ export class CartService {
             }
             this.communicatorService.publishData(this.productsInCart);
         }
+    }
+
+    removeAll(cartItem: CartItem): void {
+        let index = this.productsInCart.findIndex(p => p.name === cartItem.name);
+        cartItem.quantity = 0;
+        if (index < 0) {
+            console.log('Error!');
+        } else {
+            this.productsInCart.splice(index, 1);
+            this.communicatorService.publishData(this.productsInCart);
+        }
+    }
+
+    clearCart(): void {
+        this.productsInCart.forEach(item => item.quantity = 0);
+        this.productsInCart = new Array<CartItem>();
+        this.communicatorService.publishData(this.productsInCart);
+    }
+
+    getTotalQuantity(): number {
+        let totalQuantity: number = 0;
+        this.productsInCart.forEach(item => totalQuantity += item.quantity);
+        return totalQuantity;
     }
 
     getTotalSum(): number {

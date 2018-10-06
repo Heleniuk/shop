@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { ProductModel } from "../models/product.model";
 import { BookModel } from "../models/book.model";
 import { Category } from "../models/category.enum";
-import { CartItem } from "../models/cart-item.model";
 
 @Injectable()
 export class ProductsService {

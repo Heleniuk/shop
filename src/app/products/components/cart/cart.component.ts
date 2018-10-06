@@ -40,6 +40,14 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.removeFromCart(cartItem);
   }
 
+  onRemoveAll(cartItem: CartItem): void {
+    this.cartService.removeAll(cartItem);
+  }
+
+  onClearCart(): void {
+    this.cartService.clearCart();
+  }
+
   isCartNotEmpty(): boolean {
     return this.productsInCart.length > 0;
   }

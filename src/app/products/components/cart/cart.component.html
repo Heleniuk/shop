@@ -5,9 +5,13 @@
     <div class="container" *ngFor="let cartItem of productsInCart">
       <app-cart-item [cartItem]="cartItem" 
         (addToCart)="onAddToCart($event)"
-        (removeFromCart)="onRemoveFromCart($event)">
+        (removeFromCart)="onRemoveFromCart($event)"
+        (removeAll)="onRemoveAll($event)">
       </app-cart-item>
     </div>
+    <button type="button" class="btn btn-danger" (click)="onClearCart()">
+      Clear Cart
+    </button>
   </div>
   <ng-template #cartEmptyBlock>
     <br>
