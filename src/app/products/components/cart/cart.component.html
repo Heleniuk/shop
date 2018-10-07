@@ -1,8 +1,18 @@
 <div class="card-body">
   <div class="container" *ngIf="isCartNotEmpty(); else cartEmptyBlock">
-    <h5 class="card-title">Your Cart.</h5>
-    <h5 class="card-title">Total Sum: ${{totalSum}}</h5>
-    <div class="container" *ngFor="let cartItem of productsInCart">
+    <h4 class="card-title">Your Cart</h4>
+    <h5 class="card-title">Total Sum: {{totalSum | currency}}</h5>
+    <div class="dropdown">
+        Sort by: <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{orderByField | titlecase}}
+        </button> ascending <input type="checkbox" [checked]="ascending" (change)="ascending = !ascending;">
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item" type="button" (click)="onOrderByClick($event.target)">Name</button>
+          <button class="dropdown-item" type="button" (click)="onOrderByClick($event.target)">Price</button>
+          <button class="dropdown-item" type="button" (click)="onOrderByClick($event.target)">Quantity</button>
+        </div>
+    </div>
+    <div class="container" *ngFor="let cartItem of (productsInCart | orderBy:orderByField:ascending)">
       <app-cart-item [cartItem]="cartItem" 
         (addToCart)="onAddToCart($event)"
         (removeFromCart)="onRemoveFromCart($event)"

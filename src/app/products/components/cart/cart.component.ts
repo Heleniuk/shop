@@ -13,6 +13,8 @@ export class CartComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   productsInCart: Array<CartItem> = new Array<CartItem>();
   totalSum: number = 0;
+  orderByField: string = 'price';
+  ascending: boolean = false;
 
   constructor(
     private cartService: CartService,
@@ -46,6 +48,10 @@ export class CartComponent implements OnInit, OnDestroy {
 
   onClearCart(): void {
     this.cartService.clearCart();
+  }
+
+  onOrderByClick(element: HTMLElement) {
+    this.orderByField = element.textContent.toLowerCase();
   }
 
   isCartNotEmpty(): boolean {

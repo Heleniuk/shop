@@ -5,6 +5,7 @@ export interface ProductModel {
     description: string;
     price: number;
     category: Category;
+    createdDate: Date;
     isAvailable?: boolean;
     reviews?: string[];
 }

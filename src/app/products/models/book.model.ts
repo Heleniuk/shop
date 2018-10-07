@@ -9,6 +9,7 @@ export class BookModel implements ProductModel, CartItem {
         public description: string,
         public price: number,
         public category: Category,
+        public createdDate: Date,
         public isAvailable: boolean,
         public quantity: number,
         public reviews?: string[]
