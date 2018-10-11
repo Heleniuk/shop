@@ -9,7 +9,7 @@ import { ProductsService } from '../../services/products.service';
   providers: [ProductsService]
 })
 export class ShoppingComponent implements OnInit {
-  allProducts: Array<ProductModel>;
+  allProducts: Promise<ProductModel[]>;
 
   constructor(private productsService: ProductsService) { }
 

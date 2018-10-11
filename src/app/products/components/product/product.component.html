@@ -1,7 +1,8 @@
 <div class="card-body">
-  <h5 class="card-title">{{product.name}}
-    <span class="badge badge-info">{{product.category}}</span>
-  </h5>
+  <h4 class="card-title">{{product.name}}
+    <span class="badge badge-info">{{product.category | uppercase}}</span>
+  </h4>
   <p class="card-text"> {{product.description}}</p>
-  <h5 class="card-title">${{product.price}}</h5>
+  <p class="card-text"> Added on {{product.createdDate | date: 'dd/MM/yyyy'}}</p>
+  <h5 class="card-title">{{product.price | currency}}</h5>
 </div>

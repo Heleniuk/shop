@@ -1,1 +1,2 @@
 Task1. Added product, product-list and cart components. Implemented "Add to Cart" and "Remove from Cart" functions.
+Task4. Added date, currency and uppercase pipes to product.component.html. Async Pipe is in the product-list.component.html.The custom orderBy pipe is used in cart.component.html.

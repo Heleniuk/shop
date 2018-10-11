@@ -11,6 +11,7 @@ import { CartItemComponent } from './products/components/cart-item/cart-item.com
 import { CommunicatorService } from './products/services/communicator.service';
 import { CartService } from './products/services/cart.service';
 import { CoreModule } from './core/core.module';
+import { OrderByPipe } from './products/pipes/order-by.pipe';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CoreModule } from './core/core.module';
     ProductListComponent,
     CartComponent,
     ShoppingComponent,
-    CartItemComponent
+    CartItemComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

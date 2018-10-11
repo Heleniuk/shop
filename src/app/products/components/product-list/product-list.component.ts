@@ -11,7 +11,7 @@ import { CartItem } from '../../models/cart-item.model';
 })
 export class ProductListComponent implements OnInit {
   @Input()
-  products: Array<ProductModel>;
+  products: Promise<ProductModel[]>;
  
   constructor(private cartService: CartService) {}
 
