@@ -1,9 +1,9 @@
 <div class="card-body">
-  <div class="container" *ngIf="isCartNotEmpty(); else cartEmptyBlock">
+  <div class="container center" *ngIf="isCartNotEmpty(); else cartEmptyBlock">
     <h4 class="card-title">Your Cart</h4>
     <h5 class="card-title">Total Sum: {{totalSum | currency}}</h5>
     <div class="dropdown">
-        Sort by: <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort by: <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{orderByField | titlecase}}
         </button> ascending <input type="checkbox" [checked]="ascending" (change)="ascending = !ascending;">
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -19,9 +19,15 @@
         (removeAll)="onRemoveAll($event)">
       </app-cart-item>
     </div>
-    <button type="button" class="btn btn-danger" (click)="onClearCart()">
-      Clear Cart
-    </button>
+    <br>
+    <div class="center">
+      <button type="button" class="btn btn-danger" (click)="onClearCart()">
+        Clear Cart
+      </button>
+      <button type="button" class="btn btn-success" (click)="onSubmitOrder()">
+          Submit Order
+        </button>
+    </div>
   </div>
   <ng-template #cartEmptyBlock>
     <br>

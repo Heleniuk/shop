@@ -55,6 +55,10 @@ export class CartComponent implements OnInit, OnDestroy {
     this.orderByField = element.textContent.toLowerCase();
   }
 
+  onSubmitOrder(): void {
+
+  }
+
   isCartNotEmpty(): boolean {
     return this.productsInCart.length > 0;
   }
