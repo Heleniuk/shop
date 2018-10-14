@@ -23,6 +23,7 @@ export class CartComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.productsInCart = this.cartService.productsInCart;
     this.sub = this.communicatorService.channel$.subscribe(
       data => {
       this.productsInCart = data;

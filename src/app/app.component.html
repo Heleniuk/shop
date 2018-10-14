@@ -1,31 +1,29 @@
-<div>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div>
-                <ul class="nav navbar-nav">
-                    <li routerLinkActive="active">
-                        <a routerLink="/products">Shop</a>
-                    </li>
-                    <li routerLinkActive="active">
-                        <a routerLink="/about">About</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
 <div class="alert alert-info" role="alert">
     <h4 #appTitle class="alert-heading"></h4>
     <p>This is an online shop. We've got a wide variety of products!</p>
     <hr>
     <p class="mb-0">Pick any!</p>
 </div>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="presentation" routerLinkActive="active">
+                <a routerLink="/products">Shop</a>
+            </li>
+            <li class="presentation" routerLinkActive="active">
+                <a routerLink="/about">About</a>
+            </li>
+            <li class="presentation" routerLinkActive="active">
+                <a routerLink="/cart">Show Cart ({{cartService.getTotalQuantity()}})</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="row">
     <div class="col-sm-9">
         <router-outlet></router-outlet>
     </div>
     <div class="col-sm-3">
-        <app-cart></app-cart>
-        <router-outlet name="popup"></router-outlet>
+        <router-outlet name="reviews"></router-outlet>
     </div>
 </div>

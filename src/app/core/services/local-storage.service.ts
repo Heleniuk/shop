@@ -9,7 +9,7 @@ export class LocalStorageService {
     this.localStorage = winRef.nativeWindow.localStorage;
   }
 
-  getItem(key: string): string {
+  getItem(key: string): any {
     return this.localStorage.getItem(key);
   }
 
@@ -20,4 +20,5 @@ export class LocalStorageService {
   removeItem(key: string): void {
     this.localStorage.removeItem();
   }
+
 }

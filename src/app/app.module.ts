@@ -7,6 +7,7 @@ import { CartModule } from './cart/cart.module';
 import { ProductsModule } from './products/products.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
+import { CartService } from './cart/services/cart.service';
 
 @NgModule({
   declarations: [

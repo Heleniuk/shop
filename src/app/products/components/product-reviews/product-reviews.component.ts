@@ -5,11 +5,11 @@ import { ProductsService } from '../../services/products.service';
 import { ProductModel } from '../../../shared/models/product.model';
 
 @Component({
-  selector: 'app-product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+  selector: 'app-product-reviews',
+  templateUrl: './product-reviews.component.html',
+  styleUrls: ['./product-reviews.component.css']
 })
-export class ProductCardComponent implements OnInit {
+export class ProductReviewsComponent implements OnInit {
   product: ProductModel;
 
   constructor(
@@ -28,7 +28,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   closePopup() {
-    this.router.navigate([{ outlets: { popup: null }}]);
+    this.router.navigate([{ outlets: { reviews: null }}]);
   }
 
 }

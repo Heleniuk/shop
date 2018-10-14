@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductReviewsComponent } from './components/product-reviews/product-reviews.component';
 
 const routes: Routes = [
   {
@@ -10,8 +10,8 @@ const routes: Routes = [
   },
   {
     path: 'reviews/:productId',
-    component: ProductCardComponent,
-    outlet: 'popup'
+    component: ProductReviewsComponent,
+    outlet: 'reviews'
   }
 ];
 

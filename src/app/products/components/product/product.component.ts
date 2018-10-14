@@ -16,6 +16,6 @@ export class ProductComponent implements OnInit {
   ngOnInit() {}
 
   showReviews(product: ProductModel): void {
-    this.router.navigate([{ outlets: { popup: ['reviews', product.id] } }]);
+    this.router.navigate([{ outlets: { reviews: ['reviews', product.id] } }]);
   }
 }
