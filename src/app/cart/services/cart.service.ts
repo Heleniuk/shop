@@ -1,9 +1,8 @@
 import { Injectable, Input } from "@angular/core";
+import { CartItem } from "../../shared/models/cart-item.model";
+import { CommunicatorService } from "../../shared/services/communicator.service";
 
-import { CartItem } from "../models/cart-item.model";
-import { CommunicatorService } from "./communicator.service";
-
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class CartService {
     productsInCart: Array<CartItem> = new Array<CartItem>();
 

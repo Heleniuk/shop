@@ -1,14 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { CartItem } from '../../models/cart-item.model';
 import { Subscription } from 'rxjs';
-import { CommunicatorService } from '../../services/communicator.service';
+import { CartItem } from '../../../shared/models/cart-item.model';
+import { CommunicatorService } from '../../../shared/services/communicator.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
+
 export class CartComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   productsInCart: Array<CartItem> = new Array<CartItem>();
