@@ -1,0 +1,9 @@
+<div *ngIf="product">
+  <p class="center">Reviews:</p>
+  <ul *ngFor="let review of product.reviews">
+    <li>{{review}}</li>
+  </ul>
+  <div class="center">
+    <button class="btn btn-default" (click)="closePopup()">Hide reviews</button>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductModel } from '../../../shared/models/product.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -10,7 +11,11 @@ export class ProductComponent implements OnInit {
   @Input()
   product: ProductModel;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
+
+  showReviews(product: ProductModel): void {
+    this.router.navigate([{ outlets: { popup: ['reviews', product.id] } }]);
+  }
 }

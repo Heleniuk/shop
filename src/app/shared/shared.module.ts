@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderByPipe } from './pipes/order-by.pipe';
-import { ProductsModule } from '../products/products.module';
-import { CartModule } from '../cart/cart.module';
+import { PathNotFoundComponent } from './components/path-not-found/path-not-found.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    OrderByPipe
+    OrderByPipe,
+    PathNotFoundComponent
   ],
   exports: [
-    OrderByPipe
+    OrderByPipe,
+    PathNotFoundComponent
   ]
 })
 export class SharedModule { }

@@ -5,4 +5,5 @@
   <p class="card-text"> {{product.description}}</p>
   <p class="card-text"> Added on {{product.createdDate | date: 'dd/MM/yyyy'}}</p>
   <h5 class="card-title">{{product.price | currency}}</h5>
+  <button class="btn btn-default" (click)="showReviews(product)">Show reviews</button>
 </div>

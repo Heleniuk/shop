@@ -1,3 +1,19 @@
+<div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div>
+                <ul class="nav navbar-nav">
+                    <li routerLinkActive="active">
+                        <a routerLink="/products">Shop</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
 <div class="alert alert-info" role="alert">
     <h4 #appTitle class="alert-heading"></h4>
     <p>This is an online shop. We've got a wide variety of products!</p>
@@ -6,9 +22,10 @@
 </div>
 <div class="row">
     <div class="col-sm-9">
-        <app-product-list></app-product-list>
+        <router-outlet></router-outlet>
     </div>
     <div class="col-sm-3">
         <app-cart></app-cart>
+        <router-outlet name="popup"></router-outlet>
     </div>
 </div>

@@ -5,6 +5,7 @@ import { CartItem } from "./cart-item.model";
 
 export class BookModel implements ProductModel, CartItem {
     constructor(
+        public id: number,
         public name: string,
         public description: string,
         public price: number,
@@ -15,6 +16,6 @@ export class BookModel implements ProductModel, CartItem {
         public reviews?: string[]
     ) {
         this.isAvailable = isAvailable;
-        this.reviews = reviews || ['Nice book!', 'Just fine.'];
+        this.reviews = reviews || ['No reviews yet'];
     }
 }
