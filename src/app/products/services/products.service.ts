@@ -42,6 +42,6 @@ export class ProductsService {
     }
 
     private nextId(): number {
-        return this.products.length + 1;
+        return this.products.sort((a, b) => b.id - a.id)[0].id + 1;
     }
 }

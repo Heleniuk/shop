@@ -42,7 +42,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   onGoBack(): void {
-    this.router.navigate(['/admin']);
+    this.router.navigate(['./../'], {relativeTo: this.route});
   }
 
 }
