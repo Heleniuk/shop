@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CONSTANTS_SERVICE, ConstantsService } from './services/constants.service';
 import { GeneratorService } from './services/generator.service';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ChangeColorDirective } from './directives/change-color.directive';
 import { RandomStringFactory, RandomString5 } from './factories/random-string.factory';
 import { LocalStorageService } from './services/local-storage.service';
@@ -17,15 +16,13 @@ import { AuthService } from './services/auth.service';
   imports: [
     CommonModule
   ],
-  declarations: [
-    ContactUsComponent, 
+  declarations: [ 
     ChangeColorDirective, 
     OrderByPipe,
     PathNotFoundComponent,
     LoginComponent
   ],
   exports: [
-    ContactUsComponent, 
     ChangeColorDirective, 
     OrderByPipe,
     PathNotFoundComponent,

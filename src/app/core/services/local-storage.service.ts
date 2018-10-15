@@ -10,15 +10,15 @@ export class LocalStorageService {
   }
 
   getItem(key: string): any {
-    return this.localStorage.getItem(key);
+    return JSON.parse(this.localStorage.getItem(key));
   }
 
   setItem(key: string, value: any): void {
-    this.localStorage.setItem(key, value);
+    this.localStorage.setItem(key, JSON.stringify(value));
   }
 
   removeItem(key: string): void {
-    this.localStorage.removeItem();
+    this.localStorage.removeItem(key);
   }
 
 }

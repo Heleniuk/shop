@@ -1,3 +1,16 @@
-<p>
-  manage-orders works!
-</p>
+<div class="container center" *ngIf="orders; else noOrdersBlock">
+  <br>
+  <h2>Look! We have orders!</h2>
+  <div class="row">
+    <div class="col-sm-8">
+      <div *ngFor="let order of orders">
+        <app-order [order]="order"></app-order>
+      </div>
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+</div>
+<ng-template #noOrdersBlock>
+  <br>
+  <h2 class="center">No orders. Sorry.</h2>
+</ng-template>

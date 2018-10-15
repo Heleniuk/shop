@@ -4,7 +4,12 @@
       <div class="card-body">
         <div class="container center" *ngIf="isCartNotEmpty(); else cartEmptyBlock">
           <h4 class="card-title">Your Cart</h4>
-          <h5 class="card-title">Total Sum: {{totalSum | currency}}</h5>
+          <br>
+          <h5 class="card-title">Your name:</h5>
+          <input type="text" [value]="customerName" (input)="customerName=$event.target.value">
+          <br>
+          <h5 class="card-title">Shipping address:</h5>
+          <input type="text" [value]="customerAddress" (input)="customerAddress=$event.target.value">
           <div class="dropdown">
             Sort by: <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
@@ -21,6 +26,8 @@
               (removeAll)="onRemoveAll($event)">
             </app-cart-item>
           </div>
+          <br>
+          <h4 class="card-title">Total Sum: {{totalSum | currency}}</h4>
           <br>
           <div class="center">
             <button type="button" class="btn-lg btn-danger" (click)="onClearCart()">

@@ -3,6 +3,8 @@ import { CartService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
 import { CartItem } from '../../../core/models/cart-item.model';
 import { CommunicatorService } from '../../../core/services/communicator.service';
+import { OrderModel } from '../../../core/models/order.model';
+import { OrderService } from '../../../orders/services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,20 +15,23 @@ import { CommunicatorService } from '../../../core/services/communicator.service
 export class CartComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   productsInCart: Array<CartItem> = new Array<CartItem>();
+  customerName: string = '';
+  customerAddress: string = '';
   totalSum: number = 0;
   orderByField: string = 'price';
   ascending: boolean = false;
 
   constructor(
     private cartService: CartService,
+    private orderService: OrderService,
     private communicatorService: CommunicatorService
   ) { }
 
   ngOnInit() {
-    this.productsInCart = this.cartService.productsInCart;
+    this.init();
     this.sub = this.communicatorService.channel$.subscribe(
       data => {
-      this.productsInCart = data;
+        this.productsInCart = data;
         this.totalSum = this.cartService.getTotalSum();
       }
     )
@@ -57,11 +62,23 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   onSubmitOrder(): void {
-
+    let order = new OrderModel(
+      this.customerName,
+      this.customerAddress,
+      this.productsInCart,
+      this.totalSum
+    )
+    this.orderService.submit(order);
+    this.cartService.clearCart();
   }
 
   isCartNotEmpty(): boolean {
     return this.productsInCart.length > 0;
+  }
+
+  private init(): void {
+    this.productsInCart = this.cartService.productsInCart;
+    this.totalSum = this.cartService.getTotalSum();
   }
 
 }
