@@ -23,6 +23,7 @@ export class ProductsService {
     }
 
     create(product: ProductModel): void {
+        product.id = this.nextId();
         this.products.push(product);
     }
 
@@ -38,5 +39,9 @@ export class ProductsService {
         if (index > -1) {
             this.products.splice(index, 1);
         }
+    }
+
+    private nextId(): number {
+        return this.products.length + 1;
     }
 }

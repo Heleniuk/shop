@@ -9,10 +9,15 @@ import { ProductsService } from '../../../products/services/products.service';
   styleUrls: ['./manage-products.component.css']
 })
 export class ManageProductsComponent implements OnInit {
-  constructor(private router: Router,
-    private productsService: ProductsService) { }
+  products: Promise<ProductModel[]>;
+
+  constructor(
+    private router: Router,
+    private productsService: ProductsService
+  ) { }
 
   ngOnInit() {
+    this.products = this.productsService.getAllProducts();
   }
 
   onAdd(): void {

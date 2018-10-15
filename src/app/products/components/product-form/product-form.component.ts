@@ -3,6 +3,8 @@ import { ProductModel } from '../../../core/models/product.model';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { BookModel } from '../../../core/models/book.model';
+import { Category } from '../../../core/models/category.enum';
 
 @Component({
   selector: 'app-product-form',
@@ -19,6 +21,7 @@ export class ProductFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.product = new BookModel(null, '', '', 0, null, new Date(), true, 1);
     this.route.paramMap
       .pipe(
         switchMap(
