@@ -15,7 +15,6 @@ export class BookModel implements ProductModel, CartItem {
         public quantity: number,
         public reviews?: string[]
     ) {
-        this.isAvailable = isAvailable;
         this.reviews = reviews || ['No reviews yet'];
     }
 }

@@ -4,7 +4,7 @@ import { ProductReviewsComponent, ProductFormComponent, ProductListComponent } f
 
 const routes: Routes = [
   {
-    path: 'products',
+    path: '',
     component: ProductListComponent
   },
   {
