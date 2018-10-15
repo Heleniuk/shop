@@ -12,8 +12,8 @@ import { AdminDashboardComponent, ManageProductsComponent, ManageOrdersComponent
   imports: [
     CommonModule,
     OrdersModule,
-    ProductsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ProductsModule
   ],
   declarations: [
     AdminComponent,

@@ -1,1 +1,31 @@
-<app-product-list [isAdmin]="true"></app-product-list>
+<div class="row">
+  <div *ngFor="let product of (products | async)" class="col-sm-4">
+    <div class="card">
+      <app-product [product]="product"></app-product>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-md btn-danger right" (click)="onDelete(product)">
+            Delete
+          </button>
+        </div>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-md btn-default" (click)="showReviews(product)">
+            Show reviews
+          </button>
+        </div>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-md btn-warning right" (click)="onEdit(product)">
+            Edit
+          </button>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      <br>
+    </div>
+    <br>
+  </div>
+  <button type="button" class="btn btn-lg btn-success right" (click)="onAdd()">
+    Add New Product
+  </button>
+</div>

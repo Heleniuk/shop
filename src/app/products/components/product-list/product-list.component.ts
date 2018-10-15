@@ -11,8 +11,6 @@ import { CartItem } from '../../../core/models/cart-item.model';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  @Input()
-  isAdmin: boolean;
   products: Promise<ProductModel[]>;
 
   constructor(
@@ -31,15 +29,6 @@ export class ProductListComponent implements OnInit {
 
   showReviews(product: ProductModel): void {
     this.router.navigate([{ outlets: { reviews: ['reviews', product.id] } }]);
-  }
-
-  onEdit(product: ProductModel): void {
-    const link = ['/edit', product.id];
-    this.router.navigate(link);
-  }
-
-  onDelete(product: ProductModel): void {
-    this.productsService.delete(product);
   }
 
 }
