@@ -8,9 +8,8 @@ import { LocalStorageService } from './services/local-storage.service';
 import { ConfigOptionsService } from './services/config-options.service';
 import { WindowRef } from './services/window-ref';
 import { OrderByPipe } from './pipes/order-by.pipe';
-import { PathNotFoundComponent } from './components/path-not-found/path-not-found.component';
-import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
+import { PathNotFoundComponent, LoginComponent } from './components';
 
 @NgModule({
   imports: [
