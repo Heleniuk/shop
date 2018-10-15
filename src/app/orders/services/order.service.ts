@@ -12,30 +12,28 @@ export class OrderService {
 
     submit(order: OrderModel): void {
         let existingOrders = this.localStorageService.getItem(this.constants.ORDERS_KEY);
-        if (existingOrders) {
-            let newOrders = new Array<OrderModel>();
-            newOrders.push(existingOrders);
-            newOrders.push(order);
-            this.localStorageService.setItem(this.constants.ORDERS_KEY, newOrders);
+        if (!existingOrders) {
+            this.localStorageService.setItem(
+                this.constants.ORDERS_KEY,
+                this.wrapToArray(order)
+            );
         } else {
             let newOrders = new Array<OrderModel>();
+            for (let i = 0; i < existingOrders.length; i++) {
+                newOrders.push(existingOrders[i]);
+            }
             newOrders.push(order);
-            this.localStorageService.setItem(this.constants.ORDERS_KEY, order);
+            this.localStorageService.setItem(this.constants.ORDERS_KEY, newOrders);
         }
     }
 
     getOrders(): OrderModel[] {
-        let existingOrders = this.localStorageService.getItem(this.constants.ORDERS_KEY);
-        if (!existingOrders) {
-            return existingOrders;
-        } else {
-            if (existingOrders.length > 1) {
-                return existingOrders;
-            } else {
-                let newOrders = new Array<OrderModel>();
-                newOrders.push(existingOrders);
-                return newOrders;
-            }
-        }
+        return this.localStorageService.getItem(this.constants.ORDERS_KEY);
+    }
+
+    private wrapToArray(order: OrderModel): Array<OrderModel> {
+        let newOrders = new Array<OrderModel>();
+        newOrders.push(order);
+        return newOrders;
     }
 }
