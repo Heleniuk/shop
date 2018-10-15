@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PathNotFoundComponent } from './shared/components/path-not-found/path-not-found.component';
+import { LoginComponent } from './shared/components/login/login.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -10,7 +12,16 @@ const routes: Routes = [
   },
   {
     path: 'cart',
-    loadChildren: './cart/cart.module#CartModule', 
+    loadChildren: './cart/cart.module#CartModule'
+  },
+  {
+    path: 'admin',
+    canLoad: [AuthGuard],
+    loadChildren: './admin/admin.module#AdminModule'
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: '**',
@@ -24,4 +35,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

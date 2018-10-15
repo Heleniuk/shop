@@ -7,14 +7,17 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <ul class="nav nav-pills">
-            <li class="presentation" routerLinkActive="active">
+            <li routerLinkActive="active">
                 <a routerLink="/products">Shop</a>
             </li>
-            <li class="presentation" routerLinkActive="active">
-                <a routerLink="/about">About</a>
-            </li>
-            <li class="presentation" routerLinkActive="active">
+            <li routerLinkActive="active">
                 <a routerLink="/cart">Show Cart ({{cartService.getTotalQuantity()}})</a>
+            </li>
+            <li routerLinkActive="active">
+                <a routerLink="/admin">Admin</a>
+            </li>
+            <li routerLinkActive="active">
+                <a routerLink="/login">Login</a>
             </li>
         </ul>
     </div>
