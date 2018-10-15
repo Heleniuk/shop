@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProductModel } from '../../../core/models/product.model';
 import { ProductsService } from '../../../products/services/products.service';
 
@@ -13,7 +13,8 @@ export class ManageProductsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -21,7 +22,7 @@ export class ManageProductsComponent implements OnInit {
   }
 
   onAdd(): void {
-    this.router.navigate(['/add']);
+    this.router.navigate(['add'], {relativeTo: this.route});
   }
 
   showReviews(product: ProductModel): void {
@@ -29,8 +30,8 @@ export class ManageProductsComponent implements OnInit {
   }
 
   onEdit(product: ProductModel): void {
-    const link = ['/edit', product.id];
-    this.router.navigate(link);
+    const link = ['edit', product.id];
+    this.router.navigate(link, {relativeTo: this.route});
   }
 
   onDelete(product: ProductModel): void {
