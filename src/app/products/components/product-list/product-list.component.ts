@@ -3,6 +3,7 @@ import { CartService } from '../../../cart/services/cart.service';
 import { ProductModel } from '../../../shared/models/product.model';
 import { CartItem } from '../../../shared/models/cart-item.model';
 import { ProductsService } from '../../services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +15,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -23,5 +25,9 @@ export class ProductListComponent implements OnInit {
 
   onAddToCart(cartItem: CartItem): void {
     this.cartService.addToCart(cartItem);
+  }
+
+  showReviews(product: ProductModel): void {
+    this.router.navigate([{ outlets: { reviews: ['reviews', product.id] } }]);
   }
 }

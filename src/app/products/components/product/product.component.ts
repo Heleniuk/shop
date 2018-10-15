@@ -11,11 +11,8 @@ export class ProductComponent implements OnInit {
   @Input()
   product: ProductModel;
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {}
 
-  showReviews(product: ProductModel): void {
-    this.router.navigate([{ outlets: { reviews: ['reviews', product.id] } }]);
-  }
 }
