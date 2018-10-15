@@ -3,11 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 
-import { CoreModule } from '../core.module';
-
-@Injectable({
-  providedIn: CoreModule
-})
+@Injectable()
 export class AuthService {
   isLoggedIn = false;
   redirectUrl: string;

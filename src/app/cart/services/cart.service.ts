@@ -1,6 +1,6 @@
 import { Injectable, Input } from "@angular/core";
-import { CartItem } from "../../shared/models/cart-item.model";
-import { CommunicatorService } from "../../shared/services/communicator.service";
+import { CartItem } from "../../core/models/cart-item.model";
+import { CommunicatorService } from "../../core/services/communicator.service";
 
 @Injectable({providedIn: 'root'})
 export class CartService {

@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CartService } from '../../../cart/services/cart.service';
-import { ProductModel } from '../../../shared/models/product.model';
-import { CartItem } from '../../../shared/models/cart-item.model';
 import { ProductsService } from '../../services/products.service';
 import { Router } from '@angular/router';
+import { ProductModel } from '../../../core/models/product.model';
+import { CartItem } from '../../../core/models/cart-item.model';
 
 @Component({
   selector: 'app-product-list',

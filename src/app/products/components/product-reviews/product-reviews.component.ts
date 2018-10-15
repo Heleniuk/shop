@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
-import { ProductModel } from '../../../shared/models/product.model';
+import { ProductModel } from '../../../core/models/product.model';
 
 @Component({
   selector: 'app-product-reviews',

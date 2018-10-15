@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PathNotFoundComponent } from './shared/components/path-not-found/path-not-found.component';
-import { LoginComponent } from './shared/components/login/login.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { LoginComponent } from './core/components/login/login.component';
+import { PathNotFoundComponent } from './core/components/path-not-found/path-not-found.component';
 
 const routes: Routes = [
   {

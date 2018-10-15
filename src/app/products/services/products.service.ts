@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { BookModel } from "../../shared/models/book.model";
-import { Category } from "../../shared/models/category.enum";
-import { ProductModel } from "../../shared/models/product.model";
+import { BookModel } from "../../core/models/book.model";
+import { Category } from "../../core/models/category.enum";
+import { ProductModel } from "../../core/models/product.model";
 
 export const ALL_PRODUCTS = [
     new BookModel(1, 'Alphabet', 'A very interesting one, by the way', 100, Category.Luxury, new Date(), true, 0, ['Wonderful!', 'Beautiful!']),

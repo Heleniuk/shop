@@ -8,17 +8,34 @@ import { RandomStringFactory, RandomString5 } from './factories/random-string.fa
 import { LocalStorageService } from './services/local-storage.service';
 import { ConfigOptionsService } from './services/config-options.service';
 import { WindowRef } from './services/window-ref';
+import { OrderByPipe } from './pipes/order-by.pipe';
+import { PathNotFoundComponent } from './components/path-not-found/path-not-found.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [ContactUsComponent, ChangeColorDirective],
-  exports: [ContactUsComponent],
+  declarations: [
+    ContactUsComponent, 
+    ChangeColorDirective, 
+    OrderByPipe,
+    PathNotFoundComponent,
+    LoginComponent
+  ],
+  exports: [
+    ContactUsComponent, 
+    ChangeColorDirective, 
+    OrderByPipe,
+    PathNotFoundComponent,
+    LoginComponent
+  ],
   providers: [
     LocalStorageService,
     ConfigOptionsService,
     GeneratorService,
+    AuthService,
     WindowRef,
     { provide: ConstantsService, useValue: CONSTANTS_SERVICE },
     { provide: RandomString5,

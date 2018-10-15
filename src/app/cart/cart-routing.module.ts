@@ -9,8 +9,6 @@ const routes: Routes = [
   }
 ];
 
-export const cartComponents = [CartComponent];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
