@@ -3,25 +3,31 @@
     <div class="card">
       <app-product [product]="product"></app-product>
       <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-4">
-          <button type="button" 
-            class="btn btn-lg btn-default" 
-            (click)="showReviews(product)">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+          <button type="button" *ngIf="isAdmin" class="btn btn-md btn-danger right" (click)="onDelete(product)">
+            Delete
+          </button>
+        </div>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-md btn-default" (click)="showReviews(product)">
             Show reviews
           </button>
         </div>
-        <div class="col-sm-4">
-          <button type="button" 
-            [disabled]="!product.isAvailable" 
-            class="btn btn-lg btn-info right" 
-            (click)="onAddToCart(product)">
-            Add to Cart
+        <div class="col-sm-3">
+          <button type="button" *ngIf="isAdmin; else addToCart" class="btn btn-md btn-warning right" (click)="onEdit(product)">
+            Edit
           </button>
-          <div class="col-sm-1"></div>
+          <ng-template #addToCart>
+            <button type="button" [disabled]="!product.isAvailable" class="btn btn-md btn-info right" (click)="onAddToCart(product)">
+              Add to Cart
+            </button>
+          </ng-template>
         </div>
+        <div class="col-sm-2"></div>
       </div>
       <br>
     </div>
+    <br>
   </div>
 </div>

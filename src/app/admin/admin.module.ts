@@ -7,11 +7,13 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
 import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 import { OrdersModule } from '../orders/orders.module';
+import { ProductsModule } from '../products/products.module';
 
 @NgModule({
   imports: [
     CommonModule,
     OrdersModule,
+    ProductsModule,
     AdminRoutingModule
   ],
   declarations: [

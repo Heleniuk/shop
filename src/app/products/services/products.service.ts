@@ -10,12 +10,33 @@ export const ALL_PRODUCTS = [
     new BookModel(4, 'The Matrix', 'Disabled', 600, Category.Mainstream, new Date(), false, 0, ['This is garbage.'])
 ];
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ProductsService {
+    products: Array<ProductModel> = ALL_PRODUCTS;
+
     getAllProducts(): Promise<ProductModel[]> {
-        return Promise.resolve(ALL_PRODUCTS);
+        return Promise.resolve(this.products);
     }
+
     getProduct(id: number): Promise<ProductModel> {
-        return Promise.resolve(ALL_PRODUCTS.find(product => product.id === id));
+        return Promise.resolve(this.products.find(product => product.id === id));
+    }
+
+    create(product: ProductModel): void {
+        this.products.push(product);
+    }
+
+    update(product: ProductModel): void {
+        const index = this.products.findIndex(p => p.id === product.id);
+        if (index > -1) {
+            this.products.splice(index, 1, product);
+        }
+    }
+
+    delete(product: ProductModel): void {
+        const index = this.products.findIndex(p => p.id === product.id);
+        if (index > -1) {
+            this.products.splice(index, 1);
+        }
     }
 }
