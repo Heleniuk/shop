@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { CartService } from './cart/services/cart.service';
 
 @Component({
@@ -7,13 +7,6 @@ import { CartService } from './cart/services/cart.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('appTitle') 
-  title: ElementRef;
-
-  ngAfterViewInit() {
-    (<HTMLElement>this.title.nativeElement).textContent = 'Welcome!'
-  }
-
   constructor(public cartService: CartService) {
   }
 }
