@@ -3,18 +3,21 @@
     <div class="card">
       <app-product [product]="product"></app-product>
       <div class="row">
-        <div class="col-sm-7"></div>
-        <div class="col-sm-4">
-          <button type="button" 
-            [disabled]="!product.isAvailable" 
-            class="btn btn-warning right" 
-            (click)="onAddToCart(product)">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-sm btn-default" (click)="showReviews(product)">
+            See reviews
+          </button>
+        </div>
+        <div class="col-sm-3">
+          <button type="button" [disabled]="!product.isAvailable" class="btn btn-sm btn-info right" (click)="onAddToCart(product)">
             Add to Cart
           </button>
-          <div class="col-sm-1"></div>
         </div>
+        <div class="col-sm-2"></div>
       </div>
       <br>
     </div>
+    <br>
   </div>
 </div>

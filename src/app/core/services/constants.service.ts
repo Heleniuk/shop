@@ -1,8 +1,8 @@
 export class ConstantsService {
-  App: string;
-  Ver: string;
+  ORDERS_KEY: string;
+  PRODUCTS_KEY: string;
 } 
 
 export const CONSTANTS_SERVICE: ConstantsService = {
-  App: "TaskManager", Ver: "1.0"
+  ORDERS_KEY: 'orders', PRODUCTS_KEY: 'products'
 };

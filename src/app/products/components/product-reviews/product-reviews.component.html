@@ -1,0 +1,16 @@
+<div *ngIf="product" class="card">
+  <div class="card-body">
+    <h4 class="card-title">{{product.name}}</h4>
+    <table>
+      <tr>
+        <th class="card-text">Reviews:</th>
+      </tr>
+      <tr *ngFor="let review of product.reviews">
+        <td class="card-title">{{review}}</td>
+      </tr>
+    </table>
+    <div class="center">
+      <button class="btn btn-default" (click)="closePopup()">Hide reviews</button>
+    </div>
+  </div>
+</div>
