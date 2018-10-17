@@ -1,0 +1,86 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Alphabet",
+            "description": "Alphabet description",
+            "price": 8,
+            "category": "Mainstream",
+            "isAvailable": true,
+            "quantity": 15
+        },
+        {
+            "id": 2,
+            "name": "Grammarway",
+            "description": "Grammarway description",
+            "price": 8,
+            "category": "Business",
+            "isAvailable": true,
+            "quantity": 14
+        },
+        {
+            "id": 3,
+            "name": "Bridge to English",
+            "description": "Bridge to English description",
+            "price": 4,
+            "category": "Business",
+            "isAvailable": true,
+            "quantity": 13
+        },
+        {
+            "id": 4,
+            "name": "Francais",
+            "description": "Francais description",
+            "price": 2,
+            "category": "Luxury",
+            "isAvailable": false,
+            "quantity": 12
+        },
+        {
+            "id": 5,
+            "name": "Systems Analysis",
+            "description": "Systems Analysis description",
+            "price": 4,
+            "category": "Luxury",
+            "isAvailable": true,
+            "quantity": 11
+        },
+        {
+            "id": 6,
+            "name": "Java for Dummies",
+            "description": "Java for Dummies description",
+            "price": 8,
+            "category": "Mainstream",
+            "isAvailable": true,
+            "quantity": 10
+        }
+    ],
+    "orders": [
+        {
+            "id": 1,
+            "customerName": "Anna",
+            "customerAddress": "Borisova",
+            "items": [
+                {
+                    "id": 5,
+                    "name": "Systems Analysis",
+                    "description": "Systems Analysis description",
+                    "price": 4,
+                    "category": "Luxury",
+                    "isAvailable": true,
+                    "quantity": 11
+                },
+                {
+                    "id": 6,
+                    "name": "Java for Dummies",
+                    "description": "Java for Dummies description",
+                    "price": 8,
+                    "category": "Mainstream",
+                    "isAvailable": true,
+                    "quantity": 10
+                }
+            ],
+            "totalSum": 21
+        }
+    ]
+}

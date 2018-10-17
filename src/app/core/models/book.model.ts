@@ -15,6 +15,7 @@ export class BookModel implements ProductModel, CartItem {
         public quantity: number,
         public reviews?: string[]
     ) {
+        this.createdDate = createdDate || new Date();
         this.reviews = reviews || ['No reviews yet'];
     }
 }
