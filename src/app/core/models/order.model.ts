@@ -5,6 +5,7 @@ export class OrderModel {
         public customerName: string,
         public customerAddress: string,
         public items: CartItem[],
-        public totalSum: number
+        public totalSum: number,
+        public id?: number
     ) {}
 }

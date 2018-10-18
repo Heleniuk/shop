@@ -5,7 +5,9 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ProductsModule } from './products/products.module';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TimingInterceptor } from './core/interceptors/timing-interceptor';
+import { OrdersAPIProvider } from './orders/orders.config';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
     CoreModule,
     ProductsModule,
     AppRoutingModule
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true },
+    OrdersAPIProvider
   ],
   bootstrap: [AppComponent]
 })

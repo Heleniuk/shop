@@ -20,7 +20,7 @@ export class ProductFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.product = new BookModel(null, '', '', 0, null, new Date(), true, 1);
+    this.product = new BookModel(null, '', '', 0, null, true);
     this.route.paramMap
       .pipe(
         switchMap(

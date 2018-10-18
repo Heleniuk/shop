@@ -75,6 +75,58 @@
         }
       ],
       "totalSum": 21
+    },
+    {
+      "customerName": "",
+      "customerAddress": "",
+      "items": [
+        {
+          "id": 1,
+          "name": "Alphabet",
+          "description": "Alphabet description",
+          "price": 8,
+          "category": "Mainstream",
+          "isAvailable": true,
+          "quantity": null
+        },
+        {
+          "id": 2,
+          "name": "Grammarway",
+          "description": "Ohoho",
+          "price": 8,
+          "category": "Business",
+          "isAvailable": true,
+          "quantity": null
+        }
+      ],
+      "totalSum": null,
+      "id": 2
+    },
+    {
+      "customerName": "",
+      "customerAddress": "",
+      "items": [
+        {
+          "id": 1,
+          "name": "Alphabet",
+          "description": "Alphabet description",
+          "price": 8,
+          "category": "Mainstream",
+          "isAvailable": true,
+          "quantity": null
+        },
+        {
+          "id": 2,
+          "name": "Grammarway",
+          "description": "Ohoho",
+          "price": 8,
+          "category": "Business",
+          "isAvailable": true,
+          "quantity": null
+        }
+      ],
+      "totalSum": null,
+      "id": 3
     }
   ]
 }

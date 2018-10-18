@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderModel } from '../../../core/models/order.model';
-import { OrderService } from '../../../orders/services/order.service';
+import { OrdersObservableService } from '../../../orders/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manage-orders',
@@ -8,12 +9,15 @@ import { OrderService } from '../../../orders/services/order.service';
   styleUrls: ['./manage-orders.component.css']
 })
 export class ManageOrdersComponent implements OnInit {
-  orders = new Array<OrderModel>();
-  constructor(private orderService: OrderService) { }
+  orders: OrderModel[];
+
+  constructor(private ordersObservableService: OrdersObservableService) { }
 
   ngOnInit() {
-    this.orders = this.orderService.getOrders();
-    console.log(this.orders);
+    this.ordersObservableService.getAllOrders()
+      .subscribe(
+        (orders) => this.orders = { ...orders }
+      )
   }
 
 }
