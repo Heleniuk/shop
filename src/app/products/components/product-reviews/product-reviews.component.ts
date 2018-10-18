@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ProductsService } from '../../services/products.service';
+import { ProductsPromiseService } from '../../services';
 import { ProductModel } from '../../../core/models/product.model';
 
 @Component({
@@ -15,12 +15,12 @@ export class ProductReviewsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private productsService: ProductsService) { }
+    private productsPromiseService: ProductsPromiseService) { }
 
   ngOnInit() {
     this.route.paramMap
       .pipe(
-        switchMap((params: Params) => this.productsService.getProduct(+params.get('productId'))))
+        switchMap((params: Params) => this.productsPromiseService.getProduct(+params.get('productId'))))
       .subscribe(
         product => this.product = {...product},
         err => console.log(err)

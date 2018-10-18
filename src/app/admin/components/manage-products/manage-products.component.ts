@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductModel } from '../../../core/models/product.model';
-import { ProductsService } from '../../../products/services/products.service';
+import { ProductsPromiseService } from 'src/app/products';
 
 @Component({
   selector: 'app-manage-products',
@@ -13,16 +13,16 @@ export class ManageProductsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private productsService: ProductsService,
+    private productsPromiseService: ProductsPromiseService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.products = this.productsService.getAllProducts();
+    this.products = this.productsPromiseService.getAllProducts();
   }
 
   onAdd(): void {
-    this.router.navigate(['add'], {relativeTo: this.route});
+    this.router.navigate(['add'], { relativeTo: this.route });
   }
 
   showReviews(product: ProductModel): void {
@@ -31,11 +31,15 @@ export class ManageProductsComponent implements OnInit {
 
   onEdit(product: ProductModel): void {
     const link = ['edit', product.id];
-    this.router.navigate(link, {relativeTo: this.route});
+    this.router.navigate(link, { relativeTo: this.route });
   }
 
   onDelete(product: ProductModel): void {
-    this.productsService.delete(product);
+    this.productsPromiseService
+      .delete(product)
+      .then(() => (this.products = this.productsPromiseService.getAllProducts()))
+      .catch(err => console.log(err));
+
   }
 
 }
