@@ -11,10 +11,15 @@
     {
       "id": 2,
       "name": "Grammarway",
-      "description": "Ohoho",
+      "description": "Grammarway Description",
       "price": 8,
       "category": "Business",
-      "isAvailable": true
+      "isAvailable": true,
+      "createdDate": "2018-10-20T09:13:20.698Z",
+      "quantity": 0,
+      "reviews": [
+        "No reviews yet"
+      ]
     },
     {
       "id": 3,
@@ -77,8 +82,8 @@
       "totalSum": 21
     },
     {
-      "customerName": "",
-      "customerAddress": "",
+      "customerName": "Dada",
+      "customerAddress": "ffff",
       "items": [
         {
           "id": 1,
@@ -87,19 +92,40 @@
           "price": 8,
           "category": "Mainstream",
           "isAvailable": true,
-          "quantity": null
+          "createdDate": "2018-10-20T09:40:43.524Z",
+          "quantity": 2,
+          "reviews": [
+            "No reviews yet"
+          ]
         },
         {
           "id": 2,
           "name": "Grammarway",
-          "description": "Ohoho",
+          "description": "Grammarway Description",
           "price": 8,
           "category": "Business",
           "isAvailable": true,
-          "quantity": null
+          "createdDate": "2018-10-20T09:40:43.524Z",
+          "quantity": 1,
+          "reviews": [
+            "No reviews yet"
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Systems Analysis",
+          "description": "Systems Analysis description",
+          "price": 4,
+          "category": "Luxury",
+          "isAvailable": true,
+          "createdDate": "2018-10-20T09:40:43.524Z",
+          "quantity": 1,
+          "reviews": [
+            "No reviews yet"
+          ]
         }
       ],
-      "totalSum": null,
+      "totalSum": 28,
       "id": 2
     },
     {
@@ -113,19 +139,27 @@
           "price": 8,
           "category": "Mainstream",
           "isAvailable": true,
-          "quantity": null
+          "createdDate": "2018-10-20T11:17:10.188Z",
+          "quantity": 1,
+          "reviews": [
+            "No reviews yet"
+          ]
         },
         {
           "id": 2,
           "name": "Grammarway",
-          "description": "Ohoho",
+          "description": "Grammarway Description",
           "price": 8,
           "category": "Business",
           "isAvailable": true,
-          "quantity": null
+          "createdDate": "2018-10-20T11:17:10.188Z",
+          "quantity": 1,
+          "reviews": [
+            "No reviews yet"
+          ]
         }
       ],
-      "totalSum": null,
+      "totalSum": 16,
       "id": 3
     }
   ]
