@@ -9,15 +9,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./manage-orders.component.css']
 })
 export class ManageOrdersComponent implements OnInit {
-  orders: OrderModel[];
+  orders$: Observable<OrderModel[]>;
 
   constructor(private ordersObservableService: OrdersObservableService) { }
 
   ngOnInit() {
-    this.ordersObservableService.getAllOrders()
-      .subscribe(
-        (orders) => this.orders = { ...orders }
-      )
+    this.orders$ = this.ordersObservableService.getAllOrders();
   }
 
 }

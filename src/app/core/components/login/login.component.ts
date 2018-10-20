@@ -38,8 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.router.navigate([redirect]);
           }
         },
-        err => console.log(err),
-        () => console.log('[takeUntil] complete')
+        err => console.log(err)
       );
   }
 
