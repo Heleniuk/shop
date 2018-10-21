@@ -6,7 +6,12 @@
       "description": "Alphabet description",
       "price": 8,
       "category": "Mainstream",
-      "isAvailable": true
+      "isAvailable": true,
+      "createdDate": "2018-10-21T19:05:26.644Z",
+      "quantity": 0,
+      "reviews": [
+        "No reviews yet"
+      ]
     },
     {
       "id": 2,
@@ -161,6 +166,61 @@
       ],
       "totalSum": 16,
       "id": 3
+    },
+    {
+      "customerName": "",
+      "customerAddress": "",
+      "items": [
+        {
+          "id": 1,
+          "name": "Alphabet",
+          "description": "Alphabet description",
+          "price": 8,
+          "category": "Mainstream",
+          "isAvailable": true,
+          "createdDate": "2018-10-21T19:04:43.719Z",
+          "quantity": 1,
+          "reviews": [
+            "No reviews yet"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Grammarway",
+          "description": "Grammarway Description",
+          "price": 8,
+          "category": "Business",
+          "isAvailable": true,
+          "createdDate": "2018-10-21T19:04:43.719Z",
+          "quantity": 1,
+          "reviews": [
+            "No reviews yet"
+          ]
+        }
+      ],
+      "totalSum": 16,
+      "id": 4
+    },
+    {
+      "customerName": "Lala",
+      "customerAddress": "2345",
+      "items": [
+        {
+          "id": 1,
+          "name": "Alphabet",
+          "description": "Alphabet description",
+          "price": 8,
+          "category": "Mainstream",
+          "isAvailable": true,
+          "createdDate": "2018-10-21T20:02:44.270Z",
+          "quantity": 1,
+          "reviews": [
+            "No reviews yet"
+          ]
+        }
+      ],
+      "totalSum": 8,
+      "id": 5
     }
   ]
 }

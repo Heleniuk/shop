@@ -1,38 +1,98 @@
 import { Injectable, Inject } from "@angular/core";
 import { OrderModel } from "../../core/models/order.model";
-import { OrdersAPI } from "../orders.config";
 import { Observable, throwError } from "rxjs";
-import { catchError, concatMap } from "rxjs/operators";
+import { catchError, concatMap, tap, switchMap } from "rxjs/operators";
 import { HttpErrorResponse, HttpHeaders, HttpClient } from "@angular/common/http";
-import { OrdersModule } from "../orders.module";
+import { AppSettingsService } from "../../core/services/app-settings.service";
 
 @Injectable({ providedIn: 'root' })
 export class OrdersObservableService {
+  private ordersUrl: string;
+
   constructor(
     private http: HttpClient,
-    @Inject(OrdersAPI) private ordersUrl: string
+    private appSettingsService: AppSettingsService
   ) { }
 
   submit(order: OrderModel): Observable<OrderModel> {
-    const url = this.ordersUrl,
-        body = JSON.stringify(order),
-        options = {
-          headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        };
-       return this.http
-          .post<OrderModel>(url, body, options)
-          .pipe(
-            catchError( this.handleError )
-          );
+    return this.ordersUrl ? this.sendSubmitRequest(order) :
+      this.appSettingsService.getSettings()
+        .pipe(
+          tap(
+            settings => {
+              this.ordersUrl = settings.ordersUrl;
+            }),
+          switchMap(
+            () => this.sendSubmitRequest(order)
+          )
+        )
   }
 
   getAllOrders(): Observable<OrderModel[]> {
+    return this.ordersUrl ? this.sendGetAllRequest() :
+      this.appSettingsService.getSettings()
+        .pipe(
+          tap(
+            settings => {
+              this.ordersUrl = settings.ordersUrl;
+            }),
+          switchMap(
+            () => this.sendGetAllRequest()
+          )
+        )
+  }
+
+  getOrder(id: number): Observable<OrderModel> {
+    return this.ordersUrl ? this.sendGetRequest(id) :
+      this.appSettingsService.getSettings()
+        .pipe(
+          tap(
+            settings => {
+              this.ordersUrl = settings.ordersUrl;
+            }),
+          switchMap(
+            () => this.sendGetRequest(id)
+          )
+        )
+  }
+
+  delete(order: OrderModel): Observable<OrderModel[]> {
+    return this.ordersUrl ? this.sendDeleteRequest(order.id) :
+      this.appSettingsService.getSettings()
+        .pipe(
+          tap(
+            settings => {
+              this.ordersUrl = settings.ordersUrl;
+            }),
+          switchMap(
+            () => this.sendDeleteRequest(order.id)
+          )
+        )
+  }
+
+  private sendSubmitRequest(order: OrderModel): Observable<OrderModel> {
+    const url = this.ordersUrl,
+      body = JSON.stringify(order),
+      options = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      };
+
+    return this.http
+      .post<OrderModel>(url, body, options)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+
+  private sendGetAllRequest(): Observable<OrderModel[]> {
     return this.http
       .get<OrderModel[]>(this.ordersUrl)
       .pipe(catchError(this.handleError));
   }
 
-  getOrder(id: number): Observable<OrderModel> {
+
+  private sendGetRequest(id: number): Observable<OrderModel> {
     const url = `${this.ordersUrl}/${id}`;
 
     return this.http.get<OrderModel>(url)
@@ -41,8 +101,8 @@ export class OrdersObservableService {
       );
   }
 
-  delete(order: OrderModel): Observable<OrderModel[]> {
-    const url = `${this.ordersUrl}/${order.id}`;
+  private sendDeleteRequest(id: any): Observable<OrderModel[]> {
+    const url = `${this.ordersUrl}/${id}`;
 
     return this.http.delete(url)
       .pipe(

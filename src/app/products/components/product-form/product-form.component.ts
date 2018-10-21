@@ -23,9 +23,13 @@ export class ProductFormComponent implements OnInit {
     this.product = new BookModel(null, '', '', 0, null, true);
     this.route.paramMap
       .pipe(
-        switchMap(
-          (params: Params) => this.productsPromiseService.getProduct(+params.get('productId'))))
-      .subscribe(
+        switchMap((params: Params) => {
+          return params.get('productId')
+            ? this.productsPromiseService.getProduct(+params.get('productId'))
+            : Promise.resolve(new BookModel(null, '', '', 0, null, true))
+        }
+        )
+      ).subscribe(
         product => this.product = { ...product },
         err => console.log(err)
       );

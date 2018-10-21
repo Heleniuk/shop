@@ -1,0 +1,4 @@
+{
+    "productsUrl": "http://localhost:3000/products",
+    "ordersUrl": "http://localhost:3000/orders"
+}

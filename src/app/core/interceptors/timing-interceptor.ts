@@ -11,7 +11,7 @@ export class TimingInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler) {
         console.log(request.method);
-        if (this.filter.apply(this, [request])) {
+        if (this.filter && this.filter.apply(this, [request])) {
             const started = Date.now();
             return next.handle(request)
                 .pipe(

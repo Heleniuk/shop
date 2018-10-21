@@ -2,34 +2,114 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductModel } from 'src/app/core/models/product.model';
 import { BookModel } from '../../core/models/book.model';
+import { AppSettingsService } from '../../core/services/app-settings.service';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductsPromiseService {
-    private productsUrl = 'http://localhost:3000/products';
+    private productsUrl: string;
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private appSettingsService: AppSettingsService
+    ) { }
 
     getAllProducts(): Promise<ProductModel[]> {
-        return this.http
-            .get(this.productsUrl)
-            .toPromise()
-            .then(response => this.toTypedModels(<ProductModel[]>response))
-            .catch(this.handleError);
+        return this.productsUrl ? this.sendGetAllRequest() :
+            this.appSettingsService.getSettings()
+                .pipe(
+                    tap(settings => {
+                        this.productsUrl = settings.productsUrl;
+                    }),
+                    switchMap(
+                        () => this.sendGetAllRequest()
+                    )
+                ).toPromise()
     }
 
     getProduct(id: number): Promise<ProductModel> {
-        const url = `${this.productsUrl}/${id}`;
-
-        return this.http
-            .get(url)
-            .toPromise()
-            .then(response => this.toTypedModel(<ProductModel>response))
-            .catch(this.handleError);
+        return this.productsUrl ? this.sendGetRequest(id) :
+            this.appSettingsService.getSettings()
+                .pipe(
+                    tap(settings => {
+                        this.productsUrl = settings.productsUrl;
+                    }),
+                    switchMap(
+                        () => this.sendGetRequest(id)
+                    )
+                ).toPromise();
     }
 
     create(product: ProductModel): Promise<ProductModel> {
+        return this.productsUrl ? this.sendCreateRequest(product) :
+            this.appSettingsService.getSettings()
+                .pipe(
+                    tap(settings => {
+                        this.productsUrl = settings.productsUrl;
+                    }),
+                    switchMap(
+                        () => this.sendCreateRequest(product)
+                    )
+                ).toPromise();
+    }
+
+    update(product: ProductModel): Promise<ProductModel> {
+        return this.productsUrl ? this.sendUpdateRequest(product) :
+            this.appSettingsService.getSettings()
+                .pipe(
+                    tap(settings => {
+                        this.productsUrl = settings.productsUrl;
+                    }),
+                    switchMap(
+                        () => this.sendUpdateRequest(product)
+                    )
+                ).toPromise();
+    }
+
+    delete(product: ProductModel): Promise<ProductModel> {
+        return this.productsUrl ? this.sendDeleteProductRequest(product) :
+            this.appSettingsService.getSettings()
+                .pipe(
+                    tap(settings => {
+                        this.productsUrl = settings.productsUrl;
+                    }),
+                    switchMap(
+                        () => this.sendDeleteProductRequest(product)
+                    )
+                ).toPromise();
+    }
+
+    private sendDeleteProductRequest(product: ProductModel): Promise<ProductModel> {
+        const url = `${this.productsUrl}/${product.id}`;
+
+        return (
+            this.http
+                .delete<ProductModel>(url)
+                .toPromise()
+                .catch(this.handleError)
+        );
+    }
+
+    private sendGetAllRequest(): Promise<ProductModel[]> {
+        return this.http
+            .get<ProductModel[]>(this.productsUrl)
+            .toPromise()
+            .then(response => this.toTypedModels(response))
+            .catch(this.handleError)
+    }
+
+    private sendGetRequest(id: number): Promise<ProductModel> {
+        const url = `${this.productsUrl}/${id}`;
+        return this.http
+            .get<ProductModel>(url)
+            .toPromise()
+            .then(response => this.toTypedModel(response))
+            .catch(this.handleError);
+    }
+
+    private sendCreateRequest(product: ProductModel): any {
         const url = this.productsUrl,
             body = JSON.stringify(product),
             options = {
@@ -37,12 +117,13 @@ export class ProductsPromiseService {
             };
 
         return this.http
-            .post(url, body, options)
+            .post<ProductModel>(url, body, options)
             .toPromise()
-            .then(response => this.toTypedModel((<ProductModel>response)))
+            .then(response => this.toTypedModel(response))
             .catch(this.handleError);
     }
-    update(product: ProductModel): Promise<ProductModel> {
+
+    private sendUpdateRequest(product: ProductModel): Promise<ProductModel> {
         const url = `${this.productsUrl}/${product.id}`,
             body = JSON.stringify(product),
             options = {
@@ -50,21 +131,10 @@ export class ProductsPromiseService {
             };
 
         return this.http
-            .put(url, body, options)
+            .put<ProductModel>(url, body, options)
             .toPromise()
-            .then(response => this.toTypedModel(<ProductModel>response))
+            .then(response => this.toTypedModel(response))
             .catch(this.handleError);
-    }
-
-    delete(product: ProductModel): Promise<ProductModel> {
-        const url = `${this.productsUrl}/${product.id}`;
-
-        return (
-            this.http
-                .delete(url)
-                .toPromise()
-                .catch(this.handleError)
-        );
     }
 
     private handleError(error: any): Promise<any> {

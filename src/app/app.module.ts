@@ -7,7 +7,6 @@ import { ProductsModule } from './products/products.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TimingInterceptor } from './core/interceptors/timing-interceptor';
-import { OrdersAPIProvider } from './orders/orders.config';
 
 @NgModule({
   declarations: [
@@ -21,8 +20,7 @@ import { OrdersAPIProvider } from './orders/orders.config';
     AppRoutingModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true },
-    OrdersAPIProvider
+    { provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
