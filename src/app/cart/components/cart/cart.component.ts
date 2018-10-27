@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { CartItem } from '../../../core/models/cart-item.model';
 import { CommunicatorService } from '../../../core/services/communicator.service';
 import { OrderModel } from '../../../core/models/order.model';
-import { OrderService } from '../../../orders/services/order.service';
+import { OrdersObservableService } from 'src/app/orders/services';
 
 @Component({
   selector: 'app-cart',
@@ -23,7 +23,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   constructor(
     private cartService: CartService,
-    private orderService: OrderService,
+    private ordersObservableService: OrdersObservableService,
     private communicatorService: CommunicatorService
   ) { }
 
@@ -68,8 +68,13 @@ export class CartComponent implements OnInit, OnDestroy {
       this.productsInCart,
       this.totalSum
     )
-    this.orderService.submit(order);
-    this.cartService.clearCart();
+    this.ordersObservableService.submit(order)
+      .subscribe(
+        () => {
+          this.cartService.clearCart();
+        },
+        error => console.log(error)
+      );
   }
 
   isCartNotEmpty(): boolean {

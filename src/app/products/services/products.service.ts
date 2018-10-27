@@ -4,10 +4,10 @@ import { Category } from "../../core/models/category.enum";
 import { ProductModel } from "../../core/models/product.model";
 
 export const ALL_PRODUCTS = [
-    new BookModel(1, 'Alphabet', 'A very interesting one, by the way', 100, Category.Luxury, new Date(), true, 0, ['Wonderful!', 'Beautiful!']),
-    new BookModel(2, 'Bridge to English', 'A shitty one', 300, Category.Mainstream, new Date(), true, 0, ['Best Book ever!']),
-    new BookModel(3, 'Doctor Faustus', 'Just OK', 200, Category.Business, new Date(), true, 0),
-    new BookModel(4, 'The Matrix', 'Disabled', 600, Category.Mainstream, new Date(), false, 0, ['This is garbage.'])
+    new BookModel(1, 'Alphabet', 'A very interesting one, by the way', 100, Category.Luxury, true),
+    new BookModel(2, 'Bridge to English', 'A shitty one', 300, Category.Mainstream, true),
+    new BookModel(3, 'Doctor Faustus', 'Just OK', 200, Category.Business, true),
+    new BookModel(4, 'The Matrix', 'Disabled', 600, Category.Mainstream, false)
 ];
 
 @Injectable({ providedIn: 'root' })
