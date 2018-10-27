@@ -5,7 +5,6 @@ import { AppState } from '../../core/+store';
 import { Observable, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { checkStore } from './check-store.function';
-import { ProductsModule } from '../products.module';
 
 @Injectable({
   providedIn: 'root'
