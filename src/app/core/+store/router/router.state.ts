@@ -1,12 +1,12 @@
-import { Params, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Params, RouterStateSnapshot } from '@angular/router';
 import { ActionReducerMap } from '@ngrx/store';
 import { RouterReducerState, RouterStateSerializer, routerReducer } from '@ngrx/router-store';
+import { Injectable } from '@angular/core';
 
 export interface RouterStateUrl {
     url: string;
     queryParams: Params;
     params: Params;
-    fragment: string;
 }
 
 export interface RouterState {
@@ -17,19 +17,20 @@ export const routerReducers: ActionReducerMap<RouterState> = {
     router: routerReducer
 };
 
+@Injectable()
 export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
-    serialize(routerState: RouterStateSnapshot): RouterStateUrl {
-        const { url } = routerState;
-        const { queryParams } = routerState.root;
-
-        let state: ActivatedRouteSnapshot = routerState.root;
-        while (state.firstChild) {
-            state = state.firstChild;
-        }
-        const { params, fragment } = state;
-        console.log('serializer:' + JSON.stringify({ url, queryParams, params, fragment }));
-        return { url, queryParams, params, fragment };
+  serialize(routerState: RouterStateSnapshot): RouterStateUrl {
+    let route = routerState.root;
+    while (route.firstChild) {
+      route = route.firstChild;
     }
+    const {
+      url,
+      root: { queryParams }
+    } = routerState;
+    const { params } = route;
+    return { url, params, queryParams };
+  }
 }
 
 export const RouterStateSerializerProvider = {

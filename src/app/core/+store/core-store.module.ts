@@ -9,12 +9,16 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
   imports: [
     CommonModule,
     EffectsModule.forRoot([RouterEffects]),
-    StoreModule.forRoot(routerReducers),
-    StoreRouterConnectingModule.forRoot(),
+    StoreModule.forRoot(routerReducers, {
+      metaReducers: []
+    }),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router'
+  }),
   ],
   declarations: [],
   providers: [
-    RouterStateSerializerProvider,
+    RouterStateSerializerProvider
   ]
 })
 export class CoreStoreModule { }
