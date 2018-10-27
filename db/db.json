@@ -16,10 +16,15 @@
     {
       "id": 3,
       "name": "Bridge to English",
-      "description": "Bridge to English description",
+      "description": "Bridge to English",
       "price": 4,
       "category": "Business",
-      "isAvailable": true
+      "isAvailable": true,
+      "createdDate": "2018-10-27T22:04:20.908Z",
+      "quantity": 0,
+      "reviews": [
+        "No reviews yet"
+      ]
     },
     {
       "id": 4,

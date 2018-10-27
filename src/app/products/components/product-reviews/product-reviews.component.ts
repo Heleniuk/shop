@@ -26,7 +26,7 @@ export class ProductReviewsComponent implements OnInit {
 
   closePopup() {
     this.store.dispatch(new RouterActions.Go({
-      path: [{ outlets: { reviews: ['reviews', null] } }]
+      path: [{ outlets: { reviews: null }}]
     }));
   }
 

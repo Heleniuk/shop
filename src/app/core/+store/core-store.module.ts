@@ -7,18 +7,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   imports: [
-    CommonModule,
-    EffectsModule.forRoot([RouterEffects]),
-    StoreModule.forRoot(routerReducers, {
-      metaReducers: []
-    }),
-    StoreRouterConnectingModule.forRoot({
-      stateKey: 'router'
-  }),
+    CommonModule
   ],
-  declarations: [],
-  providers: [
-    RouterStateSerializerProvider
-  ]
+  declarations: []
 })
 export class CoreStoreModule { }

@@ -4,17 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { ProductsRoutingModule } from './products.routing.module';
 import { ProductComponent, ProductListComponent, ProductReviewsComponent, ProductFormComponent } from './components';
 import { ShopComponent } from './shop.component';
-import { StoreModule } from '@ngrx/store';
-import { productsReducer, ProductsEffects } from '../core/+store';
-import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ProductsRoutingModule,
-    StoreModule.forFeature('products', productsReducer), 
-    EffectsModule.forFeature([ProductsEffects])
+    ProductsRoutingModule
   ],
   declarations: [
     ProductComponent,

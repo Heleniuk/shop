@@ -16,9 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
     CommonModule,
     OrdersModule,
     AdminRoutingModule,
-    ProductsModule,
-    StoreModule.forFeature('products', productsReducer), 
-    EffectsModule.forFeature([ProductsEffects])
+    ProductsModule
   ],
   declarations: [
     AdminComponent,
