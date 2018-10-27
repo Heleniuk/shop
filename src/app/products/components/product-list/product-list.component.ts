@@ -1,25 +1,29 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../cart/services/cart.service';
-import { ProductsPromiseService } from '../../services';
-import { Router } from '@angular/router';
 import { ProductModel } from '../../../core/models/product.model';
 import { CartItem } from '../../../core/models/cart-item.model';
+import { Store, select } from '@ngrx/store';
+import { AppState, getProductsData, getProductsError } from '../../../core/+store';
+import { Observable } from 'rxjs';
+import * as RouterActions from './../../../core/+store/router/router.actions';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  products: Promise<ProductModel[]>;
+  products$: Observable<ReadonlyArray<ProductModel>>;
+  productsError$: Observable<Error | string>;
 
   constructor(
-    private productsPromiseService: ProductsPromiseService,
-    private cartService: CartService,
-    private router: Router
+    private store: Store<AppState>,
+    private cartService: CartService
   ) { }
 
   ngOnInit() {
-    this.products = this.productsPromiseService.getAllProducts();
+    this.products$ = this.store.pipe(select(getProductsData));
+    this.productsError$ = this.store.pipe(select(getProductsError));
   }
 
   onAddToCart(cartItem: CartItem): void {
@@ -27,7 +31,9 @@ export class ProductListComponent implements OnInit {
   }
 
   showReviews(product: ProductModel): void {
-    this.router.navigate([{ outlets: { reviews: ['reviews', product.id] } }]);
+    this.store.dispatch(new RouterActions.Go({
+      path: [{ outlets: { reviews: ['reviews', product.id] } }]
+    }));
   }
 
 }
