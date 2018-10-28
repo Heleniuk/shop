@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import { productsReducer, ProductsEffects, RouterEffects, routerReducers, RouterStateSerializerProvider } from './core/+store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
     ProductsModule,

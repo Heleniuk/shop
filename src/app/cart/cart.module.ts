@@ -5,6 +5,7 @@ import { CartRoutingModule } from './cart-routing.module';
 import { CoreModule } from '../core/core.module';
 import { CartComponent, CartItemComponent } from './components';
 import { CartContainerComponent } from './cart-container.component';
+import { ProcessOrderComponent } from './components/process-order/process-order.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { CartContainerComponent } from './cart-container.component';
   declarations: [
     CartComponent,
     CartItemComponent,
-    CartContainerComponent
+    CartContainerComponent,
+    ProcessOrderComponent
   ],
   exports: [
     CartComponent

@@ -5,6 +5,7 @@ import { CartItem } from '../../../core/models/cart-item.model';
 import { CommunicatorService } from '../../../core/services/communicator.service';
 import { OrderModel } from '../../../core/models/order.model';
 import { OrdersObservableService } from 'src/app/orders/services';
+import { CustomerInfoModel } from '../../../core/models/customer-info.model';
 
 @Component({
   selector: 'app-cart',
@@ -15,8 +16,6 @@ import { OrdersObservableService } from 'src/app/orders/services';
 export class CartComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   productsInCart: Array<CartItem> = new Array<CartItem>();
-  customerName: string = '';
-  customerAddress: string = '';
   totalSum: number = 0;
   orderByField: string = 'price';
   ascending: boolean = false;
@@ -61,13 +60,12 @@ export class CartComponent implements OnInit, OnDestroy {
     this.orderByField = element.textContent.toLowerCase();
   }
 
-  onSubmitOrder(): void {
+  onSubmitOrder(customer: CustomerInfoModel): void {
     let order = new OrderModel(
-      this.customerName,
-      this.customerAddress,
+      customer,
       this.productsInCart,
       this.totalSum
-    )
+    );
     this.ordersObservableService.submit(order)
       .subscribe(
         () => {
