@@ -7,11 +7,9 @@
         <h4 class="card-title">Customer email: {{order.customerInfo.email}}</h4>
         <h4 class="card-title">Shipping address: {{order.customerInfo.address}}</h4>
         <h4 class="card-title">Customer phones:</h4>
-        <ul>
-          <li *ngFor="let phone of order.customerInfo.phones">
+        <span *ngFor="let phone of order.customerInfo.phones">
             {{phone}}
-          </li>
-        </ul>
+        </span>
         <h4 class="card-title">Total sum: {{order.totalSum | currency}}</h4>
       </div>
       <div class="col-sm-6">
