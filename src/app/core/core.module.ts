@@ -10,10 +10,13 @@ import { WindowRef } from './services/window-ref';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { AuthService } from './services/auth.service';
 import { PathNotFoundComponent, LoginComponent } from './components';
+import { environment } from '../../environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   declarations: [ 
     ChangeColorDirective, 

@@ -1,19 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Alphabet",
-      "description": "Alphabet description",
-      "price": 8,
-      "category": "Mainstream",
-      "isAvailable": true,
-      "createdDate": "2018-10-21T19:05:26.644Z",
-      "quantity": 0,
-      "reviews": [
-        "No reviews yet"
-      ]
-    },
-    {
       "id": 2,
       "name": "Grammarway",
       "description": "Grammarway Description",
@@ -29,10 +16,15 @@
     {
       "id": 3,
       "name": "Bridge to English",
-      "description": "Bridge to English description",
+      "description": "Bridge to English",
       "price": 4,
       "category": "Business",
-      "isAvailable": true
+      "isAvailable": true,
+      "createdDate": "2018-10-27T22:04:20.908Z",
+      "quantity": 0,
+      "reviews": [
+        "No reviews yet"
+      ]
     },
     {
       "id": 4,
@@ -221,6 +213,27 @@
       ],
       "totalSum": 8,
       "id": 5
+    },
+    {
+      "customerName": "",
+      "customerAddress": "",
+      "items": [
+        {
+          "id": 3,
+          "name": "Bridge to English",
+          "description": "Bridge to English description",
+          "price": 4,
+          "category": "Business",
+          "isAvailable": true,
+          "createdDate": "2018-10-27T17:16:15.476Z",
+          "quantity": 1,
+          "reviews": [
+            "No reviews yet"
+          ]
+        }
+      ],
+      "totalSum": 4,
+      "id": 6
     }
   ]
 }

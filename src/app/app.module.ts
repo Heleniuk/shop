@@ -7,6 +7,10 @@ import { ProductsModule } from './products/products.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TimingInterceptor } from './core/interceptors/timing-interceptor';
+import { StoreModule } from '@ngrx/store';
+import { productsReducer, ProductsEffects, RouterEffects, routerReducers, RouterStateSerializerProvider } from './core/+store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -17,10 +21,20 @@ import { TimingInterceptor } from './core/interceptors/timing-interceptor';
     HttpClientModule,
     CoreModule,
     ProductsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forFeature('products', productsReducer), 
+    EffectsModule.forFeature([ProductsEffects]),
+    EffectsModule.forRoot([RouterEffects]),
+    StoreModule.forRoot(routerReducers, {
+      metaReducers: []
+    }),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router'
+  }),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true },
+    RouterStateSerializerProvider
   ],
   bootstrap: [AppComponent]
 })
