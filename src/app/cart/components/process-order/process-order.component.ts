@@ -13,8 +13,6 @@ import { AutoUnsubscribe } from '../../../core/decorators';
 export class ProcessOrderComponent implements OnInit {
   @Output()
   submitOrder: EventEmitter<CustomerInfoModel> = new EventEmitter();
-
-  customer: CustomerInfoModel = new CustomerInfoModel('', '', '', null);
   customerForm: FormGroup;
 
   validationMessages = {
