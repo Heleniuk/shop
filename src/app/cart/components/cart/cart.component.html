@@ -2,8 +2,10 @@
     <div class="row">
       <div class="col-sm-5">
         <div *ngIf="isCartNotEmpty(); else cartEmptyBlock">
-          <h4 class="card-title">Your Cart</h4>
-          <br>
+          <h3 class="card-title">Your Cart</h3>
+          <button class="btn-lg btn-danger" (click)="onClearCart()">
+            Clear Cart
+          </button>
           <div class="dropdown">
             Sort by:
             <button 
@@ -27,21 +29,16 @@
           </div>
           <div class="container" 
             *ngFor="let cartItem of (productsInCart | orderBy:orderByField:ascending)">
-                <app-cart-item 
-                  [cartItem]="cartItem" 
-                  (addToCart)="onAddToCart($event)" 
-                  (removeFromCart)="onRemoveFromCart($event)"
-                  (removeAll)="onRemoveAll($event)">
-                </app-cart-item>
+            <app-cart-item 
+              [cartItem]="cartItem" 
+              (addToCart)="onAddToCart($event)" 
+              (removeFromCart)="onRemoveFromCart($event)"
+              (removeAll)="onRemoveAll($event)">
+            </app-cart-item>
           </div>
           <br>
           <h4 class="card-title">Total Sum: {{totalSum | currency}}</h4>
           <br>
-          <div class="center">
-            <button type="button" class="btn-lg btn-danger" (click)="onClearCart()">
-              Clear Cart
-            </button>
-          </div>
           <app-process-order (submitOrder)="onSubmitOrder($event)"></app-process-order>
         </div>
       </div>

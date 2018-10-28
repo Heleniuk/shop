@@ -1,3 +1,37 @@
-<p>
-  process-order works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-5">
+      <h3 class="card-title">Input your contact information, please</h3>
+
+      <form novalidate [formGroup]="customerForm">   
+        <fieldset>
+              
+          <div formArrayName="phones">
+            <h4>Phones</h4> 
+            <button class="btn btn-warning" 
+              (click)="addPhone()">Add Phone
+            </button>
+            
+            <br>
+            <br>
+            <br>
+            <div *ngFor="let phone of phones.controls; let i=index">
+              <label>
+                Phone:
+                <input type="text" [formControlName]="i">
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+      <br>
+      <button class="btn btn-lg btn-success"
+        [disabled]="!customerForm.valid"
+        (click)="onSubmitButtonClick()">
+        Submit
+      </button>
+    </div>
+    <div class="col-sm-7"></div>
+  </div>
+</div>

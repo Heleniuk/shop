@@ -6,12 +6,14 @@ import { CoreModule } from '../core/core.module';
 import { CartComponent, CartItemComponent } from './components';
 import { CartContainerComponent } from './cart-container.component';
 import { ProcessOrderComponent } from './components/process-order/process-order.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     CoreModule,
-    CartRoutingModule
+    CartRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [
     CartComponent,
