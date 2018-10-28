@@ -7,7 +7,7 @@
         <fieldset>
           
           <div [ngClass]="{'has-error': (customerForm.get('name').touched || customerForm.get('name').dirty) && !customerForm.get('name').valid }">
-            <label for="nameId">Name:
+            <label>Name:
               <input id="nameId"
                 type="text"
                 placeholder={{placeholders.name}} 
@@ -19,7 +19,24 @@
                 </span>
               </span>
           </div>
-              
+          
+          <div [ngClass]="{'has-error': (customerForm.get('email').touched || customerForm.get('email').dirty) && !customerForm.get('email').valid }">
+            <label>Email:
+              <input id="emailId"
+                type="text"
+                placeholder={{placeholders.email}} 
+                formControlName="email"/>
+            </label>
+            <span class="help-block" *ngIf="(customerForm.get('email').touched || customerForm.get('email').dirty) && customerForm.get('email').errors">
+              <span *ngIf="customerForm.get('email').hasError('required')">
+                Please enter your email
+              </span>
+              <span *ngIf="customerForm.get('email').hasError('email')">
+                  Please enter a valid email
+              </span>
+            </span>
+          </div>
+
           <div formArrayName="phones">
             <div *ngFor="let phone of phones.controls; let i=index">
               <label>
