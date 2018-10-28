@@ -1,0 +1,82 @@
+<div class="container aligned">
+  <div class="row">
+    <div class="col-sm-5">
+      <h3 class="card-title">Input your contact information, please</h3>
+
+      <form novalidate [formGroup]="customerForm">   
+        <fieldset>
+          
+          <div [ngClass]="{'has-error': validationMessages['name']}">
+            <label>Name:  
+              <input id="nameId"
+                type="text"
+                placeholder={{placeholders.name}} 
+                formControlName="name"
+                (blur)="onBlur('name')"/>
+            </label>
+            <span class="help-block" *ngIf=" validationMessages['name'] ">
+                {{ validationMessages['name'] }}
+            </span>
+          </div>
+          
+          <div [ngClass]="{'has-error': validationMessages['email']}">
+            <label>Email:  
+              <input id="emailId"
+                type="text"
+                placeholder={{placeholders.email}} 
+                formControlName="email"
+                (blur)="onBlur('email')"/>
+            </label>
+            <span class="help-block" *ngIf=" validationMessages['email'] ">
+                {{ validationMessages['email'] }}
+            </span>
+          </div>
+
+          <div [ngClass]="{'has-error': validationMessages['address']}">
+            <label>Address:
+              <input id="addressId"
+                type="text"
+                placeholder={{placeholders.address}} 
+                formControlName="address"
+                (blur)="onBlur('address')"/>
+            </label>
+            <span class="help-block" *ngIf=" validationMessages['address'] ">
+                {{ validationMessages['address'] }}
+            </span>
+          </div>
+
+          <div formArrayName="phones">
+            <div *ngFor="let phone of phones.controls; let i=index">
+              <label>
+                Phone:  
+                <input [formControlName]="i"
+                  type="text" 
+                  placeholder={{placeholders.phone}}>
+                <button type="button" 
+                  *ngIf="i > 0"
+                  class="btn btn-default btn-number" 
+                  (click)="removePhone(i)">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+              </label>
+            </div>
+            <br>
+            <button class="btn btn-warning" 
+              (click)="addPhone()">Add Phone
+            </button>
+          </div>
+
+        </fieldset>
+      </form>
+      <br>
+      <div class="center">
+        <button class="btn btn-lg btn-success center"
+          [disabled]="!customerForm.valid"
+          (click)="onSubmitButtonClick()">
+          Submit
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-7"></div>
+  </div>
+</div>
