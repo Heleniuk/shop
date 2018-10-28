@@ -6,49 +6,43 @@
       <form novalidate [formGroup]="customerForm">   
         <fieldset>
           
-          <div [ngClass]="{'has-error': (customerForm.get('name').touched || customerForm.get('name').dirty) && !customerForm.get('name').valid }">
+          <div [ngClass]="{'has-error': validationMessages['name']}">
             <label>Name:  
               <input id="nameId"
                 type="text"
                 placeholder={{placeholders.name}} 
-                formControlName="name"/>
+                formControlName="name"
+                (blur)="onBlur('name')"/>
             </label>
-              <span class="help-block" *ngIf="(customerForm.get('name').touched || customerForm.get('name').dirty) && customerForm.get('name').errors">
-                <span *ngIf="customerForm.get('name').hasError('required')">
-                  Please enter your name
-                </span>
-              </span>
+            <span class="help-block" *ngIf=" validationMessages['name'] ">
+                {{ validationMessages['name'] }}
+            </span>
           </div>
           
-          <div [ngClass]="{'has-error': (customerForm.get('email').touched || customerForm.get('email').dirty) && !customerForm.get('email').valid }">
+          <div [ngClass]="{'has-error': validationMessages['email']}">
             <label>Email:  
               <input id="emailId"
                 type="text"
                 placeholder={{placeholders.email}} 
-                formControlName="email"/>
+                formControlName="email"
+                (blur)="onBlur('email')"/>
             </label>
-            <span class="help-block" *ngIf="(customerForm.get('email').touched || customerForm.get('email').dirty) && customerForm.get('email').errors">
-              <span *ngIf="customerForm.get('email').hasError('required')">
-                Please enter your email
-              </span>
-              <span *ngIf="customerForm.get('email').hasError('email')">
-                  Please enter a valid email
-              </span>
+            <span class="help-block" *ngIf=" validationMessages['email'] ">
+                {{ validationMessages['email'] }}
             </span>
           </div>
 
-          <div [ngClass]="{'has-error': (customerForm.get('address').touched || customerForm.get('address').dirty) && !customerForm.get('address').valid }">
+          <div [ngClass]="{'has-error': validationMessages['address']}">
             <label>Address:
               <input id="addressId"
                 type="text"
                 placeholder={{placeholders.address}} 
-                formControlName="address"/>
+                formControlName="address"
+                (blur)="onBlur('address')"/>
             </label>
-              <span class="help-block" *ngIf="(customerForm.get('address').touched || customerForm.get('address').dirty) && customerForm.get('address').errors">
-                <span *ngIf="customerForm.get('address').hasError('required')">
-                  Please enter your address
-                 </span>
-              </span>
+            <span class="help-block" *ngIf=" validationMessages['address'] ">
+                {{ validationMessages['address'] }}
+            </span>
           </div>
 
           <div formArrayName="phones">

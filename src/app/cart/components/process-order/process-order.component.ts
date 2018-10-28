@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CustomerInfoModel } from '../../../core/models/customer-info.model';
-import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AutoUnsubscribe } from '../../../core/decorators';
 
@@ -13,12 +13,16 @@ import { AutoUnsubscribe } from '../../../core/decorators';
 export class ProcessOrderComponent implements OnInit {
   @Output()
   submitOrder: EventEmitter<CustomerInfoModel> = new EventEmitter();
-  
+
   customer: CustomerInfoModel = new CustomerInfoModel('', '', '', null);
   customerForm: FormGroup;
-  
-  validationMessage: string;
-  
+
+  validationMessages = {
+    name: '',
+    email: '',
+    address: ''
+  }
+
   placeholders = {
     name: 'Name (required)',
     email: 'Email (required)',
@@ -26,13 +30,13 @@ export class ProcessOrderComponent implements OnInit {
     phone: 'Phone'
   };
 
-  private validationMessages = {
+  private validationMessagesMap = {
     name: {
       required: 'Please enter your name.'
     },
     email: {
-      required: 'Please enter your email address.',
-      email: 'Please enter a valid email address.'
+      required: 'Please enter your email.',
+      email: 'Please enter a valid email.'
     },
     address: {
       required: 'Please enter your address.'
@@ -44,6 +48,7 @@ export class ProcessOrderComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+    this.watchValueChanges();
   }
 
   get phones() {
@@ -71,6 +76,42 @@ export class ProcessOrderComponent implements OnInit {
         this.fb.control('')
       ])
     });
+  }
+
+  private watchValueChanges() {
+    const nameControl = this.customerForm.get('name');
+    const emailControl = this.customerForm.get('email');
+    const addressControl = this.customerForm.get('address');
+    
+    this.sub = nameControl.valueChanges
+      .subscribe(value =>
+        this.setValidationMessage(nameControl, 'name')
+      );
+    const emailSub = emailControl.valueChanges
+      .subscribe(value =>
+        this.setValidationMessage(emailControl, 'email')
+    );
+    const addressSub = addressControl.valueChanges
+      .subscribe(value =>
+        this.setValidationMessage(addressControl, 'address')
+    );
+    this.sub.add(emailSub);
+    this.sub.add(addressSub);
+  }
+
+  private setValidationMessage(c: AbstractControl, controlName: string) {
+    this.validationMessages[controlName] = '';
+
+    if ((c.touched || c.dirty) && c.errors) {
+      this.validationMessages[controlName] = Object.keys(c.errors)
+        .map(key => this.validationMessagesMap[controlName][key])
+        .join(' ');
+    }
+  }
+
+  onBlur(controlName: string) {
+    const control = this.customerForm.get(controlName);
+    this.setValidationMessage(control, controlName);
   }
 
 }
