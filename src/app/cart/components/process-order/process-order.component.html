@@ -5,22 +5,34 @@
 
       <form novalidate [formGroup]="customerForm">   
         <fieldset>
+          
+          <div [ngClass]="{'has-error': (customerForm.get('name').touched || customerForm.get('name').dirty) && !customerForm.get('name').valid }">
+            <label for="nameId">Name:
+              <input id="nameId"
+                type="text"
+                placeholder={{placeholders.name}} 
+                formControlName="name"/>
+            </label>
+              <span class="help-block" *ngIf="(customerForm.get('name').touched || customerForm.get('name').dirty) && customerForm.get('name').errors">
+                <span *ngIf="customerForm.get('name').hasError('required')">
+                  Please enter your name
+                </span>
+              </span>
+          </div>
               
           <div formArrayName="phones">
-            <h4>Phones</h4> 
-            <button class="btn btn-warning" 
-              (click)="addPhone()">Add Phone
-            </button>
-            
-            <br>
-            <br>
-            <br>
             <div *ngFor="let phone of phones.controls; let i=index">
               <label>
                 Phone:
-                <input type="text" [formControlName]="i">
+                <input [formControlName]="i"
+                  type="text" 
+                  placeholder={{placeholders.phone}}>
               </label>
             </div>
+            <br>
+            <button class="btn btn-warning" 
+              (click)="addPhone()">Add Another Phone
+            </button>
           </div>
 
         </fieldset>
