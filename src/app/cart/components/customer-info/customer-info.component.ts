@@ -5,12 +5,12 @@ import { Subscription } from 'rxjs';
 import { AutoUnsubscribe } from '../../../core/decorators';
 
 @Component({
-  selector: 'app-process-order',
-  templateUrl: './process-order.component.html',
-  styleUrls: ['./process-order.component.css']
+  selector: 'app-customer-info',
+  templateUrl: './customer-info.component.html',
+  styleUrls: ['./customer-info.component.css']
 })
 @AutoUnsubscribe()
-export class ProcessOrderComponent implements OnInit {
+export class CustomerInfoComponent implements OnInit {
   @Output()
   submitOrder: EventEmitter<CustomerInfoModel> = new EventEmitter();
   customerForm: FormGroup;
