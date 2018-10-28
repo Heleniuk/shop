@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container aligned">
   <div class="row">
     <div class="col-sm-5">
       <h3 class="card-title">Input your contact information, please</h3>
@@ -7,7 +7,7 @@
         <fieldset>
           
           <div [ngClass]="{'has-error': (customerForm.get('name').touched || customerForm.get('name').dirty) && !customerForm.get('name').valid }">
-            <label>Name:
+            <label>Name:  
               <input id="nameId"
                 type="text"
                 placeholder={{placeholders.name}} 
@@ -21,7 +21,7 @@
           </div>
           
           <div [ngClass]="{'has-error': (customerForm.get('email').touched || customerForm.get('email').dirty) && !customerForm.get('email').valid }">
-            <label>Email:
+            <label>Email:  
               <input id="emailId"
                 type="text"
                 placeholder={{placeholders.email}} 
@@ -37,29 +37,51 @@
             </span>
           </div>
 
+          <div [ngClass]="{'has-error': (customerForm.get('address').touched || customerForm.get('address').dirty) && !customerForm.get('address').valid }">
+            <label>Address:
+              <input id="addressId"
+                type="text"
+                placeholder={{placeholders.address}} 
+                formControlName="address"/>
+            </label>
+              <span class="help-block" *ngIf="(customerForm.get('address').touched || customerForm.get('address').dirty) && customerForm.get('address').errors">
+                <span *ngIf="customerForm.get('address').hasError('required')">
+                  Please enter your address
+                 </span>
+              </span>
+          </div>
+
           <div formArrayName="phones">
             <div *ngFor="let phone of phones.controls; let i=index">
               <label>
-                Phone:
+                Phone:  
                 <input [formControlName]="i"
                   type="text" 
                   placeholder={{placeholders.phone}}>
+                <button type="button" 
+                  *ngIf="i > 0"
+                  class="btn btn-default btn-number" 
+                  (click)="removePhone(i)">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
               </label>
             </div>
             <br>
             <button class="btn btn-warning" 
-              (click)="addPhone()">Add Another Phone
+              (click)="addPhone()">Add Phone
             </button>
           </div>
 
         </fieldset>
       </form>
       <br>
-      <button class="btn btn-lg btn-success"
-        [disabled]="!customerForm.valid"
-        (click)="onSubmitButtonClick()">
-        Submit
-      </button>
+      <div class="center">
+        <button class="btn btn-lg btn-success center"
+          [disabled]="!customerForm.valid"
+          (click)="onSubmitButtonClick()">
+          Submit
+        </button>
+      </div>
     </div>
     <div class="col-sm-7"></div>
   </div>

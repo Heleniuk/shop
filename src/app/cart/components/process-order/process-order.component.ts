@@ -9,6 +9,7 @@ import { AutoUnsubscribe } from '../../../core/decorators';
   templateUrl: './process-order.component.html',
   styleUrls: ['./process-order.component.css']
 })
+@AutoUnsubscribe()
 export class ProcessOrderComponent implements OnInit {
   @Output()
   submitOrder: EventEmitter<CustomerInfoModel> = new EventEmitter();
@@ -53,8 +54,12 @@ export class ProcessOrderComponent implements OnInit {
     this.phones.push(this.fb.control(''));
   }
 
+  removePhone(index: number) {
+    this.phones.removeAt(index);
+  }
+
   onSubmitButtonClick(): void {
-    //this.submitOrder.emit(this.customer);
+    this.submitOrder.emit(this.customerForm.value);
   }
 
   private buildForm() {

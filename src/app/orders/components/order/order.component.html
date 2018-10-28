@@ -3,8 +3,15 @@
     <div class="row">
       <div class="col-sm-6">
         <br>
-        <h4 class="card-title">Customer name: {{order.customerName}}</h4>
-        <h4 class="card-title">Shipping address: {{order.customerAddress}}</h4>
+        <h4 class="card-title">Customer name: {{order.customerInfo.name}}</h4>
+        <h4 class="card-title">Customer email: {{order.customerInfo.email}}</h4>
+        <h4 class="card-title">Shipping address: {{order.customerInfo.address}}</h4>
+        <h4 class="card-title">Customer phones:</h4>
+        <ul>
+          <li *ngFor="let phone of order.customerInfo.phones">
+            {{phone}}
+          </li>
+        </ul>
         <h4 class="card-title">Total sum: {{order.totalSum | currency}}</h4>
       </div>
       <div class="col-sm-6">
